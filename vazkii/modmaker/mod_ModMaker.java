@@ -5,13 +5,16 @@ import java.util.LinkedHashSet;
 import java.util.TreeMap;
 
 import net.minecraft.client.Minecraft;
+import vazkii.codebase.common.CommonUtils;
 import vazkii.modmaker.mod.OreGenerator;
 import vazkii.modmaker.tree.objective.UserMod;
 import vazkii.um.common.ModConverter;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
+import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -24,12 +27,19 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 	@Init
 	public void onInit(FMLInitializationEvent event) {
-		usermodsFile = Minecraft.getAppDir("minecraft/usermods");
+		usermodsFile = CommonUtils.getSide().isClient() ? Minecraft.getAppDir("minecraft/usermods") : new File(".", "usermods");
 		usermodsFile.mkdir();
-		KeyBindingRegistry.registerKeyBinding(new ModMakerKeyHandler());
+		try {
+			keybindInit();
+		} catch(Throwable e) {}
 		new ModMakerUpdateHandler(ModConverter.getMod(getClass()));
 	}
 
+	@SideOnly(Side.CLIENT)
+	public void keybindInit() {
+		KeyBindingRegistry.registerKeyBinding(new ModMakerKeyHandler());
+	}
+	
 	@PostInit
 	public void onPostInit(FMLPostInitializationEvent event) {
 		IOHelper.loadAllMods();

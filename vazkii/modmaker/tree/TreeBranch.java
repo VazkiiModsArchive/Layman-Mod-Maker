@@ -52,7 +52,7 @@ public abstract class TreeBranch {
 				TreeBranch branch = BranchHelper.branchFromNBT(cmp1);
 				String type = cmp1.getString("type");
 				branch = branch.init(this, cmp1.getString("label"));
-				addBranch(type, branch);
+				addBranch(label(), branch);
 				branch.readFromNBT(cmp1, this);
 			}
 			if (this instanceof LeafableBranch) for (TreeLeaf leaf : ((LeafableBranch) this).leaves().values())

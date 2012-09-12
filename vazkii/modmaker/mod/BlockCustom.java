@@ -11,6 +11,7 @@ public class BlockCustom extends Block implements CustomizableBlock {
 
 	int colorOverlay;
 	boolean opaque;
+	boolean gravity;
 
 	int dropID;
 	int dropMeta;
@@ -58,5 +59,10 @@ public class BlockCustom extends Block implements CustomizableBlock {
 
 	@Override public boolean isOpaqueCube() {
 		return opaque;
+	}
+
+	@Override
+	public void setGravity(boolean b) {
+		gravity = b;
 	}
 }

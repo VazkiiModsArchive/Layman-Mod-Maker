@@ -31,6 +31,9 @@ public class CraftingEntry extends ModEntry<CraftingEntry> {
 		String[] lines = s.split(";");
 		String[][] stacks = new String[3][3];
 		ItemStack output = LeafStringStack.getStack(lines[3]);
+		if(output == null)
+			return;
+		
 		for (int i = 0; i < 3; i++)
 			stacks[i] = lines[i].split(",");
 

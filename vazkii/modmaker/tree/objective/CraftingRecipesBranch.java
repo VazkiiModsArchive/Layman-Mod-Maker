@@ -31,6 +31,7 @@ public class CraftingRecipesBranch extends TreeBranch {
 
 	@Override
 	public void addBranch(String branchName, TreeBranch branch) {
+		System.out.println(branchName + " " + branch);
 		if (branch instanceof CraftingRecipeBranch) subBranches.put(branchName, branch);
 	}
 

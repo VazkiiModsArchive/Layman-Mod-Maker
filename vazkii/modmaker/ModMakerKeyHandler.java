@@ -11,8 +11,11 @@ import org.lwjgl.input.Keyboard;
 import vazkii.codebase.common.CommonUtils;
 import vazkii.modmaker.gui.GuiStartHere;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
+import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.common.asm.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ModMakerKeyHandler extends KeyHandler {
 
 	public static KeyBinding key = new KeyBinding("Mod Maker", Keyboard.KEY_F7);

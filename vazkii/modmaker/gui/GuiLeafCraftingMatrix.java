@@ -56,8 +56,8 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 			for (GuiTextField f : fArray)
 				f.drawTextBox();
 					fontRenderer.drawString("" + horizontal.charAt(0), 85, 86, 0xFFFFFF);
-					fontRenderer.drawString("" + horizontal.charAt(0), 170, 86, 0xFFFFFF);
-					fontRenderer.drawString("" + horizontal.charAt(0), 255, 86, 0xFFFFFF);
+					fontRenderer.drawString("" + horizontal.charAt(1), 170, 86, 0xFFFFFF);
+					fontRenderer.drawString("" + horizontal.charAt(2), 255, 86, 0xFFFFFF);
 					fontRenderer.drawString("" + vertical.charAt(0), 38, 106, 0xFFFFFF);
 					fontRenderer.drawString("" + vertical.charAt(1), 38, 136, 0xFFFFFF);
 					fontRenderer.drawString("" + vertical.charAt(2), 38, 166, 0xFFFFFF);
@@ -83,11 +83,11 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 			for (int i1 = 0; i1 < 3; i1++) {
 				String s = matrixTextFields[i][i1].getText();
 				String e = getErrorOn(s, false);
-				if (!MathHelper.stringNullOrLengthZero(s) && e != null) return "[" + vertical.charAt(i1) + horizontal.charAt(i) + "] " + e;
+				if (!MathHelper.stringNullOrLengthZero(s) && e != null) return "[Matrix: " + vertical.charAt(i1) + horizontal.charAt(i) + "] " + e;
 			}
 
 		String s = getErrorOn(outputTextField.getText(), true);
-		if (s != null) return "[OUT] " + s;
+		if (s != null) return "[Output] " + s;
 
 		return null;
 	}
