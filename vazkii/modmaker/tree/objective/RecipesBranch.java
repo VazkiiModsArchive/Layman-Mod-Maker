@@ -45,7 +45,8 @@ public class RecipesBranch extends TreeBranch {
 		subBranches.remove(branchName);
 	}
 
-	@Override public boolean branchesFromLabels() {
+	@Override
+	public boolean branchesFromLabels() {
 		return false;
 	}
 

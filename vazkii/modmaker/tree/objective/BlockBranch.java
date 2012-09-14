@@ -39,7 +39,7 @@ public class BlockBranch extends TreeBranch implements LeafableBranch {
 		addLeaf(new LeafString().init(this, "", "Block Name"));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Creative Tab")).setMax(12).setMin(0));
 		addLeaf(new LeafBoolean().init(this, true, "Opaque"));
-		//addLeaf(new LeafBoolean().init(this, false, "Gravity"));
+		addLeaf(new LeafBoolean().init(this, false, "Gravity"));
 		return this;
 	}
 

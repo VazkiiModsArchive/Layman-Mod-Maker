@@ -7,7 +7,6 @@ import java.net.URI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.EnumOS;
 import net.minecraft.src.GuiButton;
-import net.minecraft.src.GuiMainMenu;
 
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
@@ -75,7 +74,7 @@ public class GuiStartHere extends GuiModMaker {
 			}
 		}
 		case 2: {
-			mc.displayGuiScreen(new GuiMainMenu());
+			mc.displayGuiScreen(null);
 			break;
 		}
 		case 3: {

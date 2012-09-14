@@ -1,6 +1,7 @@
 package vazkii.modmaker.entrying;
 
 import java.util.TreeMap;
+import java.util.logging.Level;
 
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
@@ -14,6 +15,7 @@ import vazkii.modmaker.tree.TreeLeaf;
 import vazkii.modmaker.tree.objective.FoodStatsBranch;
 import vazkii.modmaker.tree.objective.ItemBranch;
 import vazkii.modmaker.tree.objective.PotionEffectBranch;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ItemEntry extends ModEntry<ItemEntry> {
@@ -32,6 +34,10 @@ public class ItemEntry extends ModEntry<ItemEntry> {
 		String name = (String) leaves.get("Item Type").read();
 
 		int itemID = (Integer) leaves.get("Item ID").read();
+		if (Item.itemsList[itemID] != null) {
+			FMLCommonHandler.instance().getFMLLogger().log(Level.WARNING, "Item ID " + itemID + " is already occupied, aborting registry of item " + itemBranch.label());
+			return;
+		}
 		Item item = null;
 
 		if (name.equals("food")) {
