@@ -35,7 +35,12 @@ public class BlockEntry extends ModEntry<BlockEntry> {
 		TreeMap<String, TreeLeaf> leaves = blockBranch.leaves();
 		Object o = leaves.get("Sprite").read();
 		int blockID = (Integer) leaves.get("Block ID").read();
-		int sprite = o instanceof Integer ? (Integer) o : mod_ModMaker.claimedSprites.contains(o) ? ModLoader.addOverride("/terrain.png", "/" + (String) o) : 0;
+
+		int sprite = 0;
+		try {
+			sprite = o instanceof Integer ? (Integer) o : mod_ModMaker.claimedSprites.contains(o) ? ModLoader.addOverride("/terrain.png", "/" + (String) o) : 0;
+		} catch (Throwable e) {}
+
 		Material mat = materialMappings.get(leaves.get("Material").read());
 		Block block = null;
 		block = new BlockCustom(blockID, sprite, mat);

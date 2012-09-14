@@ -10,10 +10,10 @@ public class LeafCraftingMatrix extends LeafString {
 	public GuiLeafEdit getLeafEditGui(GuiScreen parent) {
 		return new GuiLeafCraftingMatrix(parent, this, label());
 	}
-	
+
 	@Override
 	public String displayString() {
-		return "Output: " +  read().split(";")[3];
+		return "Output: " + read().split(";")[3];
 	}
 
 }

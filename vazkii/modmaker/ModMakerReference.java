@@ -1,9 +1,8 @@
 package vazkii.modmaker;
 
-
 public class ModMakerReference {
 
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "1.0.2";
 	public static final String UPDATE_URL = "https://dl.dropbox.com/u/34938401/Mods/Off%20Topic/Layman%20Mod%20Maker/Version.txt";
 	public static final String CHANGELOG_URL = "https://dl.dropbox.com/u/34938401/Mods/Off%20Topic/Layman%20Mod%20Maker/Changelog.txt";
 	public static final String MOD_URL = "http://www.minecraftforum.net/topic/1475385-wip-layman-mod-maker-modding-has-never-been-as-simple/";

@@ -44,7 +44,8 @@ public class BlocksBranch extends TreeBranch {
 		subBranches.remove(branchName);
 	}
 
-	@Override public GuiCreateBranch getBranchCreationGui(GuiScreen screen) {
+	@Override
+	public GuiCreateBranch getBranchCreationGui(GuiScreen screen) {
 		return new GuiCreateBranch(this, "Block", BlockBranch.class, screen);
 	}
 

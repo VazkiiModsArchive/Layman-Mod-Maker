@@ -57,7 +57,8 @@ public class PotionEffectBranch extends TreeBranch implements LeafableBranch {
 		return label;
 	}
 
-	@Override public boolean isConstant() {
+	@Override
+	public boolean isConstant() {
 		return true;
 	}
 

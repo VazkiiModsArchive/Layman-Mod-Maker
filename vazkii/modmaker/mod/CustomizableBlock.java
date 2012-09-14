@@ -9,7 +9,7 @@ public interface CustomizableBlock {
 	public void setDropStats(BlockDropBranch branch);
 
 	public void setOpaque(boolean b);
-	
+
 	public void setGravity(boolean b);
 
 }

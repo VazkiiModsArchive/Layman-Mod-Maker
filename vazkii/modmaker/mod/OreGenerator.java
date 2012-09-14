@@ -46,14 +46,15 @@ public class OreGenerator implements IWorldGenerator {
 			this.replaceBlockID = replaceBlockID;
 		}
 
-		@Override public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5) {
+		@Override
+		public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5) {
 			float var6 = par2Random.nextFloat() * (float) Math.PI;
-			double var7 = ((par3 + 8) + MathHelper.sin(var6) * maxBlockCount / 8.0F);
-			double var9 = ((par3 + 8) - MathHelper.sin(var6) * maxBlockCount / 8.0F);
-			double var11 = ((par5 + 8) + MathHelper.cos(var6) * maxBlockCount / 8.0F);
-			double var13 = ((par5 + 8) - MathHelper.cos(var6) * maxBlockCount / 8.0F);
-			double var15 = (par4 + par2Random.nextInt(3) - 2);
-			double var17 = (par4 + par2Random.nextInt(3) - 2);
+			double var7 = par3 + 8 + MathHelper.sin(var6) * maxBlockCount / 8.0F;
+			double var9 = par3 + 8 - MathHelper.sin(var6) * maxBlockCount / 8.0F;
+			double var11 = par5 + 8 + MathHelper.cos(var6) * maxBlockCount / 8.0F;
+			double var13 = par5 + 8 - MathHelper.cos(var6) * maxBlockCount / 8.0F;
+			double var15 = par4 + par2Random.nextInt(3) - 2;
+			double var17 = par4 + par2Random.nextInt(3) - 2;
 
 			for (int var19 = 0; var19 <= maxBlockCount; ++var19) {
 				double var20 = var7 + (var9 - var7) * var19 / maxBlockCount;

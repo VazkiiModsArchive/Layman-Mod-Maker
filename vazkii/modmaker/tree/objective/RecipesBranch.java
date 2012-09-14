@@ -45,7 +45,12 @@ public class RecipesBranch extends TreeBranch {
 		subBranches.remove(branchName);
 	}
 
-	@Override public boolean isConstant() {
+	@Override public boolean branchesFromLabels() {
+		return false;
+	}
+
+	@Override
+	public boolean isConstant() {
 		return true;
 	}
 

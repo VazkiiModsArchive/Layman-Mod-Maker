@@ -12,11 +12,13 @@ public class GuiLeafStringStack extends GuiLeafString {
 		this.qtd = qtd;
 	}
 
-	@Override public String getValidChars() {
+	@Override
+	public String getValidChars() {
 		return "-0123456789:";
 	}
 
-	@Override public String getError() {
+	@Override
+	public String getError() {
 		String s = contentsField.getText();
 		String[] tokens = s.split(":");
 		if (qtd) {

@@ -27,7 +27,8 @@ public class GuiLeafImage extends GuiLeafEdit<File> {
 		super(parent, leaf, propName);
 	}
 
-	@Override public String getError() {
+	@Override
+	public String getError() {
 		if (currentFile == null) return "You must select a file!";
 		return null;
 	}
@@ -40,7 +41,8 @@ public class GuiLeafImage extends GuiLeafEdit<File> {
 		controlList.add(fileButton);
 	}
 
-	@Override protected void actionPerformed(GuiButton par1GuiButton) {
+	@Override
+	protected void actionPerformed(GuiButton par1GuiButton) {
 		if (par1GuiButton == fileButton) {
 			new ImageSelectPanel(this);
 			return;

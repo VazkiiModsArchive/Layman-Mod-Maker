@@ -31,7 +31,8 @@ public class GuiBranch extends GuiModMaker {
 		if (!constant) ((GuiButton) controlList.get(1)).enabled = true;
 	}
 
-	@Override public void initGui() {
+	@Override
+	public void initGui() {
 		super.initGui();
 		container = new GuiBranchContainer(this, branch.subBranches());
 		controlList.clear();
@@ -45,7 +46,8 @@ public class GuiBranch extends GuiModMaker {
 		if (!branch.subBranches().isEmpty() && !(this instanceof GuiLeafableBranch)) container.elementClicked(0, false);
 	}
 
-	@Override protected void actionPerformed(GuiButton par1GuiButton) {
+	@Override
+	protected void actionPerformed(GuiButton par1GuiButton) {
 		switch (par1GuiButton.id) {
 		case 0: {
 			if (selected != null) mc.displayGuiScreen(selected instanceof LeafableBranch ? new GuiLeafableBranch(selected, selected.isConstant()) : new GuiBranch(selected, selected.isConstant()));

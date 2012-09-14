@@ -21,7 +21,8 @@ public class GuiLeafableBranch extends GuiBranch {
 		if (!branch.subBranches().isEmpty() || !((LeafableBranch) branch).leaves().isEmpty()) container.elementClicked(0, false);
 	}
 
-	@Override public void select(Object select, String name) {
+	@Override
+	public void select(Object select, String name) {
 		selected = select;
 		selectedName = name;
 
@@ -40,7 +41,8 @@ public class GuiLeafableBranch extends GuiBranch {
 		((GuiButton) controlList.get(1)).enabled = !constant;
 	}
 
-	@Override protected void actionPerformed(GuiButton par1GuiButton) {
+	@Override
+	protected void actionPerformed(GuiButton par1GuiButton) {
 		switch (par1GuiButton.id) {
 		case 0: {
 			if (selected != null) if (selected instanceof TreeLeaf) mc.displayGuiScreen(((TreeLeaf) selected).getLeafEditGui(this));

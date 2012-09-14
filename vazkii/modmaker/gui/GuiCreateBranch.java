@@ -24,7 +24,8 @@ public class GuiCreateBranch extends GuiModMaker {
 		this.parent = parent;
 	}
 
-	@Override public void initGui() {
+	@Override
+	public void initGui() {
 		super.initGui();
 		nameField = createCenteredTextField(80, 150);
 
@@ -33,7 +34,8 @@ public class GuiCreateBranch extends GuiModMaker {
 		controlList.add(createCenteredButton(1, 180, "Cancel"));
 	}
 
-	@Override public void drawExtras(int par1, int par2, float par3) {
+	@Override
+	public void drawExtras(int par1, int par2, float par3) {
 		drawCompletelyCenteredString(String.format("Creating a new %s.", name), 25, true, 0xFFFFFF);
 		drawCompletelyCenteredString(name + " Name:", 65, false, 0xFFFFFF);
 
@@ -41,17 +43,20 @@ public class GuiCreateBranch extends GuiModMaker {
 		nameField.drawTextBox();
 	}
 
-	@Override protected void keyTyped(char par1, int par2) {
+	@Override
+	protected void keyTyped(char par1, int par2) {
 		super.keyTyped(par1, par2);
 		nameField.textboxKeyTyped(par1, par2);
 	}
 
-	@Override protected void mouseClicked(int par1, int par2, int par3) {
+	@Override
+	protected void mouseClicked(int par1, int par2, int par3) {
 		super.mouseClicked(par1, par2, par3);
 		nameField.mouseClicked(par1, par2, par3);
 	}
 
-	@Override protected void actionPerformed(GuiButton par1GuiButton) {
+	@Override
+	protected void actionPerformed(GuiButton par1GuiButton) {
 		if (par1GuiButton.id == 0) try {
 			branch.addBranch(nameField.getText(), branchToCreate.newInstance().init(branch, nameField.getText()));
 			IOHelper.saveMod(BranchHelper.getModFromBranch(branch));

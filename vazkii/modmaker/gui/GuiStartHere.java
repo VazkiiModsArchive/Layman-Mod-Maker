@@ -23,7 +23,8 @@ public class GuiStartHere extends GuiModMaker {
 	ColorCode colorSub = ColorCode.WHITE;
 	String fileLoc;
 
-	@Override public void initGui() {
+	@Override
+	public void initGui() {
 		ColorCode[] allCodes = ColorCode.class.getEnumConstants();
 		colorMain = allCodes[CommonUtils.nextIntMinMax(1, allCodes.length - 1)];
 		colorSub = allCodes[CommonUtils.nextIntMinMax(1, allCodes.length - 1)];
@@ -84,7 +85,8 @@ public class GuiStartHere extends GuiModMaker {
 		}
 	}
 
-	@Override public void drawExtras(int par1, int par2, float par3) {
+	@Override
+	public void drawExtras(int par1, int par2, float par3) {
 		int shifty = 26;
 		GL11.glPushMatrix();
 		GL11.glScalef(2.0F, 2.0F, 2.0F);

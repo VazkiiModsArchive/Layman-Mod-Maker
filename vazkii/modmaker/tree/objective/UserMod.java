@@ -44,7 +44,8 @@ public class UserMod extends TreeBranch {
 		return label;
 	}
 
-	@Override public boolean isConstant() {
+	@Override
+	public boolean isConstant() {
 		return true;
 	}
 
@@ -64,7 +65,8 @@ public class UserMod extends TreeBranch {
 		super.writeToNBT(cmp, superBranch);
 	}
 
-	@Override public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
+	@Override
+	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
 		author = cmp.getString("author");
 		cmp.getString("label");
 		if (cmp.hasKey("Images")) readBranch(cmp.getCompoundTag("Images"));

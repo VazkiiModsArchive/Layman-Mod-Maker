@@ -22,7 +22,8 @@ public class GuiLeafBoolean extends GuiLeafEdit<Boolean> {
 		controlList.add(flagButton);
 	}
 
-	@Override protected void actionPerformed(GuiButton par1GuiButton) {
+	@Override
+	protected void actionPerformed(GuiButton par1GuiButton) {
 		if (par1GuiButton == flagButton) {
 			flag = CommonUtils.flipBoolean(flag);
 			flagButton.displayString = propName + " = " + flag;

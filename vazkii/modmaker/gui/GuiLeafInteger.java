@@ -14,11 +14,13 @@ public class GuiLeafInteger extends GuiLeafEdit<Integer> {
 		this.min = min;
 	}
 
-	@Override public String getValidChars() {
+	@Override
+	public String getValidChars() {
 		return "-0123456789";
 	}
 
-	@Override public String getError() {
+	@Override
+	public String getError() {
 		int i = getValue();
 		if (i > max) return propName + " is too high, max is " + max + ".";
 		if (i < min) return propName + " is too low, min is " + min + ".";
@@ -26,7 +28,8 @@ public class GuiLeafInteger extends GuiLeafEdit<Integer> {
 		return null;
 	}
 
-	@Override public int getMaxChars() {
+	@Override
+	public int getMaxChars() {
 		return 10;
 	}
 

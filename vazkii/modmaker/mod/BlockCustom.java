@@ -32,15 +32,18 @@ public class BlockCustom extends Block implements CustomizableBlock {
 		return colorOverlay;
 	}
 
-	@Override public int quantityDropped(Random par1Random) {
+	@Override
+	public int quantityDropped(Random par1Random) {
 		return dropQtdMin == dropQtdMax ? dropQtdMin : CommonUtils.nextIntMinMax(dropQtdMin, dropQtdMax);
 	}
 
-	@Override public int idDropped(int par1, Random par2Random, int par3) {
+	@Override
+	public int idDropped(int par1, Random par2Random, int par3) {
 		return dropID < 0 ? blockID : dropID;
 	}
 
-	@Override protected int damageDropped(int par1) {
+	@Override
+	protected int damageDropped(int par1) {
 		return dropMeta < 0 ? par1 : dropMeta;
 	}
 
@@ -57,7 +60,8 @@ public class BlockCustom extends Block implements CustomizableBlock {
 		opaque = b;
 	}
 
-	@Override public boolean isOpaqueCube() {
+	@Override
+	public boolean isOpaqueCube() {
 		return opaque;
 	}
 

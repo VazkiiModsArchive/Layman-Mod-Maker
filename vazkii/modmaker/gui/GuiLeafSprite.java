@@ -13,7 +13,8 @@ public class GuiLeafSprite extends GuiLeafEdit {
 		super(parent, leaf, propName);
 	}
 
-	@Override public void initGui() {
+	@Override
+	public void initGui() {
 		super.initGui();
 		controlList.add(createCenteredButton(2, 75, "Sprite Index"));
 	}
@@ -24,15 +25,18 @@ public class GuiLeafSprite extends GuiLeafEdit {
 		contentsField.setMaxStringLength(getMaxChars());
 	}
 
-	@Override public String getValidChars() {
+	@Override
+	public String getValidChars() {
 		return index ? "0123456789" : "*";
 	}
 
-	@Override public int getMaxChars() {
+	@Override
+	public int getMaxChars() {
 		return index ? 3 : super.getMaxChars();
 	}
 
-	@Override protected void actionPerformed(GuiButton par1GuiButton) {
+	@Override
+	protected void actionPerformed(GuiButton par1GuiButton) {
 		if (par1GuiButton.id == 2) {
 			index = CommonUtils.flipBoolean(index);
 			resetFields();
@@ -41,7 +45,8 @@ public class GuiLeafSprite extends GuiLeafEdit {
 		super.actionPerformed(par1GuiButton);
 	}
 
-	@Override public String getError() {
+	@Override
+	public String getError() {
 		Object o = getValue();
 		if (o instanceof String) {
 			String s = (String) o;

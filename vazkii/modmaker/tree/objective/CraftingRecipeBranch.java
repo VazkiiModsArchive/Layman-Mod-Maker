@@ -21,7 +21,7 @@ public class CraftingRecipeBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
-		addLeaf(new LeafCraftingMatrix().init(this, "1:0,,;,,;,,;1:1:0", "Recipe"));
+		addLeaf(new LeafCraftingMatrix().init(this, "1:0,x,x;x,x,x;x,x,x;1:1:0", "Recipe"));
 		addLeaf(new LeafBoolean().init(this, false, "Shapeless"));
 		return this;
 	}
@@ -56,12 +56,14 @@ public class CraftingRecipeBranch extends TreeBranch implements LeafableBranch {
 		leaves.put(leaf.label(), leaf);
 	}
 
-	@Override public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
+	@Override
+	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
 		super.readFromNBT(cmp, superBranch);
 		new CraftingEntry().init(this).readEntry();
 	}
 
-	@Override public boolean isConstant() {
+	@Override
+	public boolean isConstant() {
 		return true;
 	}
 

@@ -44,7 +44,8 @@ public class FuelsBranch extends TreeBranch {
 		subBranches.remove(branchName);
 	}
 
-	@Override public GuiCreateBranch getBranchCreationGui(GuiScreen screen) {
+	@Override
+	public GuiCreateBranch getBranchCreationGui(GuiScreen screen) {
 		return new GuiCreateBranch(this, "Fuel", FuelBranch.class, screen);
 	}
 }

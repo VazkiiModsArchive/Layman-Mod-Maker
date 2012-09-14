@@ -50,14 +50,19 @@ public abstract class TreeBranch {
 			if (b instanceof NBTTagCompound) {
 				NBTTagCompound cmp1 = (NBTTagCompound) b;
 				TreeBranch branch = BranchHelper.branchFromNBT(cmp1);
+				String label = cmp1.getString("label");
 				String type = cmp1.getString("type");
-				branch = branch.init(this, cmp1.getString("label"));
-				addBranch(label(), branch);
+				branch = branch.init(this, label);
+				addBranch(branchesFromLabels() ? label : type, branch);
 				branch.readFromNBT(cmp1, this);
 			}
 			if (this instanceof LeafableBranch) for (TreeLeaf leaf : ((LeafableBranch) this).leaves().values())
 				leaf.readFromNBT(cmp, this);
 		}
+	}
+
+	public boolean branchesFromLabels() {
+		return true;
 	}
 
 	public boolean isConstant() {

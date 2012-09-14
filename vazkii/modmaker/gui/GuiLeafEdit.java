@@ -36,7 +36,8 @@ public abstract class GuiLeafEdit<T> extends GuiModMaker {
 		if (contentsField != null) contentsField.drawTextBox();
 	}
 
-	@Override public void initGui() {
+	@Override
+	public void initGui() {
 		super.initGui();
 		contentsField = createCenteredTextField(100, 200, getValidChars());
 		contentsField.setMaxStringLength(getMaxChars());
@@ -45,7 +46,8 @@ public abstract class GuiLeafEdit<T> extends GuiModMaker {
 		controlList.add(createCenteredButton(1, 185, "Cancel"));
 	}
 
-	@Override protected void actionPerformed(GuiButton par1GuiButton) {
+	@Override
+	protected void actionPerformed(GuiButton par1GuiButton) {
 		if (par1GuiButton.id == 0) {
 			leaf.write(getValue());
 			IOHelper.saveMod(BranchHelper.getModFromBranch(leaf.getBranch()));
@@ -54,12 +56,14 @@ public abstract class GuiLeafEdit<T> extends GuiModMaker {
 		mc.displayGuiScreen(parent);
 	}
 
-	@Override protected void keyTyped(char par1, int par2) {
+	@Override
+	protected void keyTyped(char par1, int par2) {
 		super.keyTyped(par1, par2);
 		if (contentsField != null) contentsField.textboxKeyTyped(par1, par2);
 	}
 
-	@Override protected void mouseClicked(int par1, int par2, int par3) {
+	@Override
+	protected void mouseClicked(int par1, int par2, int par3) {
 		super.mouseClicked(par1, par2, par3);
 		if (contentsField != null) contentsField.mouseClicked(par1, par2, par3);
 	}

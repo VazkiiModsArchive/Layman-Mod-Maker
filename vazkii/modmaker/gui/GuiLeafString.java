@@ -18,7 +18,8 @@ public class GuiLeafString extends GuiLeafEdit<String> {
 		super(parent, leaf, propName);
 	}
 
-	@Override public String getError() {
+	@Override
+	public String getError() {
 		if (validTokens == null || validTokens.length == 0) return null;
 
 		String text = contentsField.getText();

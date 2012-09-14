@@ -68,11 +68,13 @@ public class ItemBranch extends TreeBranch implements LeafableBranch {
 		leaves.put(leaf.label(), leaf);
 	}
 
-	@Override public boolean isConstant() {
+	@Override
+	public boolean isConstant() {
 		return true;
 	}
 
-	@Override public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
+	@Override
+	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
 		super.readFromNBT(cmp, superBranch);
 		new ItemEntry().init(this).readEntry();
 	}

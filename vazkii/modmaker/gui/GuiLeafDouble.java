@@ -14,7 +14,8 @@ public class GuiLeafDouble extends GuiLeafEdit<Double> {
 		this.max = max;
 	}
 
-	@Override public String getError() {
+	@Override
+	public String getError() {
 		double d = getValue();
 		if (d > max) return propName + " is too high, max is " + max + ".";
 		if (d < min) return propName + " is too low, min is " + min + ".";
@@ -22,11 +23,13 @@ public class GuiLeafDouble extends GuiLeafEdit<Double> {
 		return null;
 	}
 
-	@Override public int getMaxChars() {
+	@Override
+	public int getMaxChars() {
 		return 10;
 	}
 
-	@Override public String getValidChars() {
+	@Override
+	public String getValidChars() {
 		return "-0123456789.";
 	}
 

@@ -68,7 +68,8 @@ public class ModMakerUpdateHandler extends UpdateManagerMod {
 		return new ItemStack(ModMakerReference.VALID_IDS[index], 1, 0);
 	}
 
-	@Override @SideOnly(Side.CLIENT)
+	@Override
+	@SideOnly(Side.CLIENT)
 	public Dimension renderIcon(int x, int y, GuiModList modList) {
 		Dimension dim = super.renderIcon(x, y, modList);
 

@@ -31,9 +31,8 @@ public class CraftingEntry extends ModEntry<CraftingEntry> {
 		String[] lines = s.split(";");
 		String[][] stacks = new String[3][3];
 		ItemStack output = LeafStringStack.getStack(lines[3]);
-		if(output == null)
-			return;
-		
+		if (output == null) return;
+
 		for (int i = 0; i < 3; i++)
 			stacks[i] = lines[i].split(",");
 
@@ -72,11 +71,14 @@ public class CraftingEntry extends ModEntry<CraftingEntry> {
 
 		width = maxHeight;
 		int maxWidth = 3;
-		if (!hasLines[0]) maxWidth--;
 
-		if (!hasLines[1] && !hasLines[2]) maxWidth = 0;
-		if (!hasLines[1] || !hasLines[2]) maxWidth--;
+		if (!hasLines[1] && !hasLines[2]) maxWidth -= 2;
+		else if (!hasLines[1] || !hasLines[2]) maxWidth--;
+
+		if (!hasLines[0]) maxWidth--;
 		height = maxWidth;
+
+		System.out.println(maxWidth + " " + maxHeight);
 
 		if (maxWidth != 0 && maxHeight != 0) {
 			List<ItemStack> stacksList = new ArrayList();

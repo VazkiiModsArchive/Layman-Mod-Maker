@@ -18,7 +18,8 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 		super(parent, leaf, propName);
 	}
 
-	@Override public void initGui() {
+	@Override
+	public void initGui() {
 		super.initGui();
 		for (int i = 0; i < 3; i++)
 			for (int i1 = 0; i1 < 3; i1++) {
@@ -33,7 +34,8 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 		controlList.add(createCenteredButton(1, 255, "Cancel"));
 	}
 
-	@Override protected void keyTyped(char par1, int par2) {
+	@Override
+	protected void keyTyped(char par1, int par2) {
 		super.keyTyped(par1, par2);
 		for (int i = 0; i < 3; i++)
 			for (int i1 = 0; i1 < 3; i1++)
@@ -41,7 +43,8 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 		outputTextField.textboxKeyTyped(par1, par2);
 	}
 
-	@Override protected void mouseClicked(int par1, int par2, int par3) {
+	@Override
+	protected void mouseClicked(int par1, int par2, int par3) {
 		super.mouseClicked(par1, par2, par3);
 		for (int i = 0; i < 3; i++)
 			for (int i1 = 0; i1 < 3; i1++)
@@ -65,7 +68,8 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 					outputTextField.drawTextBox();
 	}
 
-	@Override public String getError() {
+	@Override
+	public String getError() {
 		boolean foundNonEmpty = false;
 		findNonEmpty:
 		{
@@ -128,11 +132,13 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 		}
 	}
 
-	@Override public boolean drawValueString() {
+	@Override
+	public boolean drawValueString() {
 		return false;
 	}
 
-	@Override public int getErrorMessageY() {
+	@Override
+	public int getErrorMessageY() {
 		return 225;
 	}
 

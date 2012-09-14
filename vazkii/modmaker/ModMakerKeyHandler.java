@@ -15,8 +15,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.asm.SideOnly;
 
-@SideOnly(Side.CLIENT)
-public class ModMakerKeyHandler extends KeyHandler {
+@SideOnly(Side.CLIENT) public class ModMakerKeyHandler extends KeyHandler {
 
 	public static KeyBinding key = new KeyBinding("Mod Maker", Keyboard.KEY_F7);
 

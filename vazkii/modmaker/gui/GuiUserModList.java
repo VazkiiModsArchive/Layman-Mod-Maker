@@ -23,7 +23,8 @@ public class GuiUserModList extends GuiModMaker {
 		if (!mod_ModMaker.userMods.isEmpty()) modList.elementClicked(0, false);
 	}
 
-	@Override protected void actionPerformed(GuiButton par1GuiButton) {
+	@Override
+	protected void actionPerformed(GuiButton par1GuiButton) {
 		switch (par1GuiButton.id) {
 		case 0: {
 			mc.displayGuiScreen(new GuiNewMod());
@@ -37,8 +38,8 @@ public class GuiUserModList extends GuiModMaker {
 			if (mod != null) {
 				mod_ModMaker.userMods.remove(mod);
 				modList.selected = -1;
-				File f = new File(mod_ModMaker.usermodsFile, mod);
-				f.delete();
+				File f = new File(mod_ModMaker.usermodsFile, mod + ".dat");
+				System.out.println("Deleted " + f + " " + f.delete());
 			}
 			break;
 		}

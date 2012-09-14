@@ -3,7 +3,7 @@ package vazkii.modmaker.tree.objective;
 import java.util.TreeMap;
 
 import vazkii.modmaker.tree.LeafImage;
-import vazkii.modmaker.tree.LeafString;
+import vazkii.modmaker.tree.LeafStringPNG;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
@@ -19,7 +19,7 @@ public class ImageBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
-		addLeaf(new LeafString().init(this, "default.png", "Image Name"));
+		addLeaf(new LeafStringPNG().init(this, "default.png", "Image Name"));
 		addLeaf(new LeafImage().init(this, null, "Image File"));
 		return this;
 	}
@@ -54,7 +54,8 @@ public class ImageBranch extends TreeBranch implements LeafableBranch {
 		leaves.put(leaf.label(), leaf);
 	}
 
-	@Override public boolean isConstant() {
+	@Override
+	public boolean isConstant() {
 		return true;
 	}
 

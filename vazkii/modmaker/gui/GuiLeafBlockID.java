@@ -10,7 +10,8 @@ public class GuiLeafBlockID extends GuiLeafInteger {
 		super(parent, leaf, propName, max, min);
 	}
 
-	@Override public String getError() {
+	@Override
+	public String getError() {
 		int i = getValue();
 		if (i > max) return propName + " is too high, max is " + max + ".";
 		if (i < min) return propName + " is too low, min is " + min + ".";

@@ -44,7 +44,8 @@ public class OreGenerationBranch extends TreeBranch {
 		subBranches.remove(branchName);
 	}
 
-	@Override public GuiCreateBranch getBranchCreationGui(GuiScreen screen) {
+	@Override
+	public GuiCreateBranch getBranchCreationGui(GuiScreen screen) {
 		return new GuiCreateBranch(this, "Ore Gen Entry", OreGenerateBranch.class, screen);
 	}
 
