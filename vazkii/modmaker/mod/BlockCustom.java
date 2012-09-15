@@ -27,19 +27,23 @@ public class BlockCustom extends Block implements CustomizableBlock {
 		super(par1, par2, par3Material);
 	}
 
-	@Override public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+	@Override
+	public void onBlockAdded(World par1World, int par2, int par3, int par4) {
 		par1World.scheduleBlockUpdate(par2, par3, par4, blockID, tickRate());
 	}
 
-	@Override public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+	@Override
+	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
 		par1World.scheduleBlockUpdate(par2, par3, par4, blockID, tickRate());
 	}
 
-	@Override public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+	@Override
+	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		if (!par1World.isRemote) tryToFall(par1World, par2, par3, par4);
 	}
 
-	@Override public int tickRate() {
+	@Override
+	public int tickRate() {
 		return gravity ? 3 : super.tickRate();
 	}
 
@@ -99,7 +103,7 @@ public class BlockCustom extends Block implements CustomizableBlock {
 
 			if (!fallInstantly && par1World.checkChunksExist(par2 - var8, par3 - var8, par4 - var8, par2 + var8, par3 + var8, par4 + var8)) {
 				if (!par1World.isRemote) {
-					EntityFallingSand var9 = new EntityFallingSand(par1World, (par2 + 0.5F), (par3 + 0.5F), (par4 + 0.5F), blockID);
+					EntityFallingSand var9 = new EntityFallingSand(par1World, par2 + 0.5F, par3 + 0.5F, par4 + 0.5F, blockID);
 					par1World.spawnEntityInWorld(var9);
 				}
 			}

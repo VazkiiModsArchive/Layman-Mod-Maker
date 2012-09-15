@@ -74,6 +74,11 @@ public class ItemBranch extends TreeBranch implements LeafableBranch {
 	}
 
 	@Override
+	public boolean branchesFromLabels() {
+		return false;
+	}
+
+	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
 		super.readFromNBT(cmp, superBranch);
 		new ItemEntry().init(this).readEntry();

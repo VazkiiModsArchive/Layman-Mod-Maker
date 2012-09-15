@@ -79,6 +79,11 @@ public class BlockBranch extends TreeBranch implements LeafableBranch {
 	}
 
 	@Override
+	public boolean branchesFromLabels() {
+		return false;
+	}
+
+	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
 		super.readFromNBT(cmp, superBranch);
 		new BlockEntry().init(this).readEntry();

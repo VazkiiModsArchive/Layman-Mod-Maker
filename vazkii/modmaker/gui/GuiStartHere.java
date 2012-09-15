@@ -3,10 +3,15 @@ package vazkii.modmaker.gui;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.EnumOS;
 import net.minecraft.src.GuiButton;
+import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
+import net.minecraft.src.RenderHelper;
+import net.minecraft.src.RenderItem;
 
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
@@ -21,6 +26,7 @@ public class GuiStartHere extends GuiModMaker {
 	ColorCode colorMain = ColorCode.WHITE;
 	ColorCode colorSub = ColorCode.WHITE;
 	String fileLoc;
+	boolean cake;
 
 	@Override
 	public void initGui() {
@@ -33,6 +39,7 @@ public class GuiStartHere extends GuiModMaker {
 		controlList.add(createCenteredButton(2, 185, "Go Back"));
 		controlList.add(createCenteredButton(3, height - 35, "Layman Mod Maker Forum Thread"));
 		fileLoc = new File(Minecraft.getMinecraftDir(), "usermods").getAbsolutePath();
+		cake = new Random().nextInt(500) == 0;
 	}
 
 	@Override
@@ -89,11 +96,20 @@ public class GuiStartHere extends GuiModMaker {
 		int shifty = 26;
 		GL11.glPushMatrix();
 		GL11.glScalef(2.0F, 2.0F, 2.0F);
-		drawCompletelyCenteredString(colorMain + "Layman Mod Maker!", shifty, true, 0xFFFFFF, 2.0F);
+		String s = cake ? "Cake" : "Mod";
+		drawCompletelyCenteredString(colorMain + String.format("Layman %s Maker!", s), shifty, true, 0xFFFFFF, 2.0F);
+		if (cake) {
+			Minecraft mc = CommonUtils.getMc();
+			RenderHelper.enableStandardItemLighting();
+			RenderItem renderItem = new RenderItem();
+			renderItem.renderItemIntoGUI(mc.fontRenderer, mc.renderEngine, new ItemStack(Item.cake), width / 4 - 8, 0);
+
+			RenderHelper.disableStandardItemLighting();
+		}
 		GL11.glScalef(1.0F, 1.0F, 1.0F);
 		GL11.glPopMatrix();
 		shifty += 24;
-		drawCompletelyCenteredString(colorSub + "By Vazkii, version " + ModMakerReference.VERSION, shifty, true, 0xFFFFF);
+		drawCompletelyCenteredString("" + colorSub + (cake ? "Not a lie!" : "By Vazkii, version " + ModMakerReference.VERSION), shifty, true, 0xFFFFF);
 	}
 
 }

@@ -13,13 +13,11 @@ import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "modmaker_Vz", name = "Layman Mod Maker", version = "by Vazkii. Version [1.0.2] for 1.3.2.") public class mod_ModMaker {
+@Mod(modid = "modmaker_Vz", name = "Layman Mod Maker", version = "by Vazkii. Version [1.0.4] for 1.3.2.") public class mod_ModMaker {
 
 	public static TreeMap<String, UserMod> userMods = new TreeMap();
 	public static LinkedHashSet<String> claimedSprites = new LinkedHashSet();
@@ -35,7 +33,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 		new ModMakerUpdateHandler(ModConverter.getMod(getClass()));
 	}
 
-	@SideOnly(Side.CLIENT)
 	public void keybindInit() {
 		KeyBindingRegistry.registerKeyBinding(new ModMakerKeyHandler());
 	}

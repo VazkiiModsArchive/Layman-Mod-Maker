@@ -66,6 +66,11 @@ public class FoodStatsBranch extends TreeBranch implements LeafableBranch {
 	}
 
 	@Override
+	public boolean branchesFromLabels() {
+		return false;
+	}
+
+	@Override
 	public void deleteLeaf(String name) {}
 
 }
