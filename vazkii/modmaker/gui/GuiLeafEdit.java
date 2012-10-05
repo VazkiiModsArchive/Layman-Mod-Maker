@@ -30,8 +30,7 @@ public abstract class GuiLeafEdit<T> extends GuiModMaker {
 		if (!validate(error)) {
 			drawCompletelyCenteredString(ColorCode.RED + error, getErrorMessageY(), false, 0xFFFFFF);
 			((GuiButton) controlList.get(0)).enabled = false;
-		}
-		else ((GuiButton) controlList.get(0)).enabled = true;
+		} else ((GuiButton) controlList.get(0)).enabled = true;
 
 		if (contentsField != null) contentsField.drawTextBox();
 	}

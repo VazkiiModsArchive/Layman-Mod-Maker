@@ -93,8 +93,7 @@ public class CraftingEntry extends ModEntry<CraftingEntry> {
 					ItemStack stack = LeafStringStack.getStack(stackString);
 					if (stack == null) {
 						if (i == 0 || i == 1 && width > 1 || i == 2 && width > 2) stacksList.add(null);
-					}
-					else stacksList.add(stack.copy());
+					} else stacksList.add(stack.copy());
 				}
 			}
 

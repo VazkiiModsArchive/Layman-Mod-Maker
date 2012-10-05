@@ -38,8 +38,7 @@ public class GuiLeafStringStack extends GuiLeafString {
 			}
 
 			return null;
-		}
-		else {
+		} else {
 			if (tokens.length != 2 || s.endsWith(":")) return "Invalid syntax, the correct one is 'ID:Metadata'";
 
 			try {

@@ -30,8 +30,7 @@ public class GuiLeafableBranch extends GuiBranch {
 			((GuiButton) controlList.get(0)).displayString = "Edit Leaf";
 			((GuiButton) controlList.get(1)).displayString = "Create new Leaf";
 			((GuiButton) controlList.get(2)).displayString = "Delete Leaf";
-		}
-		else {
+		} else {
 			((GuiButton) controlList.get(0)).displayString = "Explore Branch";
 			((GuiButton) controlList.get(1)).displayString = "Create new Branch";
 			((GuiButton) controlList.get(2)).displayString = "Delete Branch";
@@ -44,25 +43,25 @@ public class GuiLeafableBranch extends GuiBranch {
 	@Override
 	protected void actionPerformed(GuiButton par1GuiButton) {
 		switch (par1GuiButton.id) {
-		case 0: {
-			if (selected != null) if (selected instanceof TreeLeaf) mc.displayGuiScreen(((TreeLeaf) selected).getLeafEditGui(this));
-			else if (selected instanceof TreeBranch) mc.displayGuiScreen(selected instanceof LeafableBranch ? new GuiLeafableBranch((TreeBranch) selected, ((TreeBranch) selected).isConstant()) : new GuiBranch((TreeBranch) selected, ((TreeBranch) selected).isConstant()));
-			break;
-		}
-		case 1: {
-			mc.displayGuiScreen(branch.getBranchCreationGui(this));
-			break;
-		}
-		case 2: {
-			if (selected != null) if (selected instanceof TreeLeaf) ((LeafableBranch) branch).deleteLeaf(selectedName);
-			else if (selected instanceof TreeBranch) branch.deleteBranch(selectedName);
-			break;
-		}
-		case 3: {
-			TreeBranch superBranch = branch.superBranch();
-			mc.displayGuiScreen(superBranch == null ? new GuiUserModList() : superBranch instanceof LeafableBranch ? new GuiLeafableBranch(superBranch, superBranch.isConstant()) : new GuiBranch(superBranch, superBranch.isConstant()));
-			break;
-		}
+			case 0: {
+				if (selected != null) if (selected instanceof TreeLeaf) mc.displayGuiScreen(((TreeLeaf) selected).getLeafEditGui(this));
+				else if (selected instanceof TreeBranch) mc.displayGuiScreen(selected instanceof LeafableBranch ? new GuiLeafableBranch((TreeBranch) selected, ((TreeBranch) selected).isConstant()) : new GuiBranch((TreeBranch) selected, ((TreeBranch) selected).isConstant()));
+				break;
+			}
+			case 1: {
+				mc.displayGuiScreen(branch.getBranchCreationGui(this));
+				break;
+			}
+			case 2: {
+				if (selected != null) if (selected instanceof TreeLeaf) ((LeafableBranch) branch).deleteLeaf(selectedName);
+				else if (selected instanceof TreeBranch) branch.deleteBranch(selectedName);
+				break;
+			}
+			case 3: {
+				TreeBranch superBranch = branch.superBranch();
+				mc.displayGuiScreen(superBranch == null ? new GuiUserModList() : superBranch instanceof LeafableBranch ? new GuiLeafableBranch(superBranch, superBranch.isConstant()) : new GuiBranch(superBranch, superBranch.isConstant()));
+				break;
+			}
 		}
 	}
 

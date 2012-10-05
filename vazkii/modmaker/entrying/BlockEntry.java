@@ -46,7 +46,8 @@ public class BlockEntry extends ModEntry<BlockEntry> {
 		int sprite = 0;
 		try {
 			sprite = o instanceof Integer ? (Integer) o : mod_ModMaker.claimedSprites.contains(o) ? ModLoader.addOverride("/terrain.png", "/" + (String) o) : 0;
-		} catch (Throwable e) {}
+		} catch (Throwable e) {
+		}
 
 		Material mat = materialMappings.get(leaves.get("Material").read());
 		Block block = null;
