@@ -2,8 +2,9 @@ package vazkii.modmaker.gui;
 
 import java.io.File;
 
-import net.minecraft.src.GuiButton;
 import vazkii.modmaker.mod_ModMaker;
+
+import net.minecraft.src.GuiButton;
 
 public class GuiUserModList extends GuiModMaker {
 

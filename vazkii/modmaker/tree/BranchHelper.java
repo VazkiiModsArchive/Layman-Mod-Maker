@@ -2,7 +2,8 @@ package vazkii.modmaker.tree;
 
 import java.util.HashMap;
 
-import net.minecraft.src.NBTTagCompound;
+import vazkii.modmaker.tree.objective.AchievementBranch;
+import vazkii.modmaker.tree.objective.AchievementsBranch;
 import vazkii.modmaker.tree.objective.BlockBranch;
 import vazkii.modmaker.tree.objective.BlockDropBranch;
 import vazkii.modmaker.tree.objective.BlocksBranch;
@@ -22,6 +23,8 @@ import vazkii.modmaker.tree.objective.RecipesBranch;
 import vazkii.modmaker.tree.objective.SmeltingRecipeBranch;
 import vazkii.modmaker.tree.objective.SmeltingRecipesBranch;
 import vazkii.modmaker.tree.objective.UserMod;
+
+import net.minecraft.src.NBTTagCompound;
 
 public class BranchHelper {
 
@@ -84,5 +87,7 @@ public class BranchHelper {
 		registerMapping("smeltingRecipe", SmeltingRecipeBranch.class);
 		registerMapping("fuels", FuelsBranch.class);
 		registerMapping("fuel", FuelBranch.class);
+		registerMapping("achievements", AchievementsBranch.class);
+		registerMapping("achievement", AchievementBranch.class);
 	}
 }

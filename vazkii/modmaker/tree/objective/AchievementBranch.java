@@ -1,20 +1,21 @@
 package vazkii.modmaker.tree.objective;
 
+import java.util.Map;
 import java.util.TreeMap;
 
-import vazkii.modmaker.entrying.ItemEntry;
+import vazkii.modmaker.entrying.AchievementEntry;
+import vazkii.modmaker.tree.LeafAchievementID;
 import vazkii.modmaker.tree.LeafBoolean;
 import vazkii.modmaker.tree.LeafInteger;
-import vazkii.modmaker.tree.LeafItemID;
-import vazkii.modmaker.tree.LeafSprite;
 import vazkii.modmaker.tree.LeafString;
+import vazkii.modmaker.tree.LeafStringStack;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
 
 import net.minecraft.src.NBTTagCompound;
 
-public class ItemBranch extends TreeBranch implements LeafableBranch {
+public class AchievementBranch extends TreeBranch implements LeafableBranch {
 
 	private String label;
 	private TreeBranch superBranch;
@@ -25,18 +26,16 @@ public class ItemBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
-		addBranch("foodStats", new FoodStatsBranch().init(this, "Food Stats"));
-		addLeaf(new LeafString().init(this, "normal", "Item Type", "normal", "food"));
-		addLeaf(((LeafInteger) new LeafItemID().init(this, 0, "Item ID")).setMax(32000).setMin(256));
-		addLeaf(new LeafSprite().init(this, 0, "Sprite"));
-		addLeaf(((LeafInteger) new LeafInteger().init(this, 64, "Max Stack Size")).setMax(64).setMin(1));
-		addLeaf(new LeafBoolean().init(this, false, "Full 3D"));
-		addLeaf(new LeafString().init(this, "", "Item Name"));
-		addLeaf(((LeafInteger) new LeafInteger().init(this, 0xFFFFFF, "Color Overlay")).setMax(0xFFFFFF).setMin(0x000000));
-		addLeaf(new LeafBoolean().init(this, false, "Shine"));
-		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Rarity")).setMax(3).setMin(0));
-		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Creative Tab")).setMax(12).setMin(0));
-		addLeaf(new LeafString().init(this, "none", "Brewing Effect", "none", "wart", "glowstone", "redstone", "ferm_eye", "magma", "sugar", "melon", "eye", "tear", "blaze", "carrot", "gunpowder"));
+		addLeaf(((LeafInteger) new LeafAchievementID().init(this, 0, "Achievement ID")).setMin(0));
+		addLeaf(((LeafInteger) new LeafInteger().init(this, -1, "Parent Achievement ID")).setMin(-1));
+		addLeaf(new LeafInteger().init(this, 0, "Grid X Position"));
+		addLeaf(new LeafInteger().init(this, 0, "Grid Y Position"));
+		addLeaf(new LeafStringStack().init(this, "1:0", "Trigger Item"));
+		addLeaf(new LeafStringStack().init(this, "1:0", "Display Item"));
+		addLeaf(new LeafString().init(this, "pickup", "Trigger Type", "pickup", "craft", "smelt"));
+		addLeaf(new LeafString().init(this, "", "Name"));
+		addLeaf(new LeafString().init(this, "", "Description"));
+		addLeaf(new LeafBoolean().init(this, false, "Special"));
 		return this;
 	}
 
@@ -80,10 +79,19 @@ public class ItemBranch extends TreeBranch implements LeafableBranch {
 		return false;
 	}
 
+	private static Map<Integer, AchievementEntry> entries = new TreeMap<Integer, AchievementEntry>();
+
 	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
 		super.readFromNBT(cmp, superBranch);
-		new ItemEntry().init(this).readEntry();
+		entries.put((Integer) leaves().get("Achievement ID").read(), new AchievementEntry().init(this));
+	}
+
+	public static void registerAllAchievements() {
+		for (Integer i : entries.keySet()) {
+			AchievementEntry entry = entries.get(i);
+			entry.readEntry();
+		}
 	}
 
 	@Override
@@ -93,4 +101,5 @@ public class ItemBranch extends TreeBranch implements LeafableBranch {
 	@Override
 	public void deleteLeaf(String name) {
 	}
+
 }

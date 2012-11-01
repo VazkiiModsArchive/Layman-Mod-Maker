@@ -1,9 +1,10 @@
 package vazkii.modmaker.gui;
 
-import net.minecraft.src.GuiButton;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraft.src.GuiButton;
 
 public class GuiLeafableBranch extends GuiBranch {
 

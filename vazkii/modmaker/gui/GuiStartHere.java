@@ -5,7 +5,17 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Random;
 
+import org.lwjgl.Sys;
+import org.lwjgl.opengl.GL11;
+
+import updatemanager.common.UpdateManager;
+import vazkii.codebase.client.ColorRGB;
+import vazkii.codebase.common.ColorCode;
+import vazkii.codebase.common.CommonUtils;
+import vazkii.codebase.common.VazcoreReference;
+import vazkii.modmaker.ModMakerReference;
 import net.minecraft.client.Minecraft;
+
 import net.minecraft.src.EnumOS;
 import net.minecraft.src.FontRenderer;
 import net.minecraft.src.GuiButton;
@@ -17,22 +27,14 @@ import net.minecraft.src.RenderItem;
 import net.minecraft.src.ServerData;
 import net.minecraft.src.Tessellator;
 
-import org.lwjgl.Sys;
-import org.lwjgl.opengl.GL11;
-
-import vazkii.codebase.client.ColorRGB;
-import vazkii.codebase.common.ColorCode;
-import vazkii.codebase.common.CommonUtils;
-import vazkii.codebase.common.VazcoreReference;
-import vazkii.modmaker.ModMakerReference;
-import vazkii.um.common.UpdateManager;
-
 public class GuiStartHere extends GuiModMaker {
 
 	ColorCode colorMain = ColorCode.WHITE;
 	ColorCode colorSub = ColorCode.WHITE;
 	String fileLoc;
 	boolean cake;
+
+	boolean displayUpdate = false;
 
 	@Override
 	public void initGui() {
@@ -240,7 +242,6 @@ public class GuiStartHere extends GuiModMaker {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
-
 	}
 
 	public class NoTextureButton extends GuiButton {

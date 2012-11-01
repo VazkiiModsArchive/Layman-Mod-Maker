@@ -1,11 +1,12 @@
 package vazkii.modmaker.tree;
 
+import vazkii.modmaker.gui.GuiLeafEdit;
+import vazkii.modmaker.gui.GuiLeafStringStack;
+
 import net.minecraft.src.Block;
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-import vazkii.modmaker.gui.GuiLeafEdit;
-import vazkii.modmaker.gui.GuiLeafStringStack;
 
 public class LeafStringStack extends LeafString {
 

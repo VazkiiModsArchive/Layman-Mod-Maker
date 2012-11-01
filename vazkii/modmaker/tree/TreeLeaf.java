@@ -1,8 +1,9 @@
 package vazkii.modmaker.tree;
 
+import vazkii.modmaker.gui.GuiLeafEdit;
+
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.NBTTagCompound;
-import vazkii.modmaker.gui.GuiLeafEdit;
 
 public abstract class TreeLeaf<T> {
 

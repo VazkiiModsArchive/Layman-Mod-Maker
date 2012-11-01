@@ -1,8 +1,10 @@
 package vazkii.modmaker.entrying;
 
-import net.minecraft.src.ItemStack;
 import vazkii.modmaker.tree.LeafStringStack;
 import vazkii.modmaker.tree.objective.SmeltingRecipeBranch;
+
+import net.minecraft.src.ItemStack;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SmeltingEntry extends ModEntry<SmeltingEntry> {

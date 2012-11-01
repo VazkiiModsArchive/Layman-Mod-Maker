@@ -5,12 +5,13 @@ import static net.minecraft.src.BlockSand.fallInstantly;
 
 import java.util.Random;
 
+import vazkii.codebase.common.CommonUtils;
+import vazkii.modmaker.tree.objective.BlockDropBranch;
+
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityFallingSand;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
-import vazkii.codebase.common.CommonUtils;
-import vazkii.modmaker.tree.objective.BlockDropBranch;
 
 public class BlockCustom extends Block implements CustomizableBlock {
 
@@ -68,7 +69,7 @@ public class BlockCustom extends Block implements CustomizableBlock {
 	}
 
 	@Override
-	protected int damageDropped(int par1) {
+	public int damageDropped(int par1) {
 		return dropMeta < 0 ? par1 : dropMeta;
 	}
 

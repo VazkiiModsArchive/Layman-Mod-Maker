@@ -1,10 +1,11 @@
 package vazkii.modmaker.gui;
 
+import updatemanager.client.GuiRestrictedTextField;
+import vazkii.modmaker.tree.TreeLeaf;
+
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.GuiTextField;
 import net.minecraft.src.MathHelper;
-import vazkii.modmaker.tree.TreeLeaf;
-import vazkii.um.client.GuiRestrictedTextField;
 
 public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 
@@ -58,14 +59,14 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 		for (GuiTextField[] fArray : matrixTextFields)
 			for (GuiTextField f : fArray)
 				f.drawTextBox();
-		fontRenderer.drawString("" + horizontal.charAt(0), 85, 86, 0xFFFFFF);
-		fontRenderer.drawString("" + horizontal.charAt(1), 170, 86, 0xFFFFFF);
-		fontRenderer.drawString("" + horizontal.charAt(2), 255, 86, 0xFFFFFF);
-		fontRenderer.drawString("" + vertical.charAt(0), 38, 106, 0xFFFFFF);
-		fontRenderer.drawString("" + vertical.charAt(1), 38, 136, 0xFFFFFF);
-		fontRenderer.drawString("" + vertical.charAt(2), 38, 166, 0xFFFFFF);
+					fontRenderer.drawString("" + horizontal.charAt(0), 85, 86, 0xFFFFFF);
+					fontRenderer.drawString("" + horizontal.charAt(1), 170, 86, 0xFFFFFF);
+					fontRenderer.drawString("" + horizontal.charAt(2), 255, 86, 0xFFFFFF);
+					fontRenderer.drawString("" + vertical.charAt(0), 38, 106, 0xFFFFFF);
+					fontRenderer.drawString("" + vertical.charAt(1), 38, 136, 0xFFFFFF);
+					fontRenderer.drawString("" + vertical.charAt(2), 38, 166, 0xFFFFFF);
 
-		outputTextField.drawTextBox();
+					outputTextField.drawTextBox();
 	}
 
 	@Override

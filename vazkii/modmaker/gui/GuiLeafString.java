@@ -2,8 +2,9 @@ package vazkii.modmaker.gui;
 
 import java.util.Arrays;
 
-import net.minecraft.src.GuiScreen;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraft.src.GuiScreen;
 
 public class GuiLeafString extends GuiLeafEdit<String> {
 

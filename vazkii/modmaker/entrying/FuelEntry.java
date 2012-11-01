@@ -1,9 +1,11 @@
 package vazkii.modmaker.entrying;
 
-import net.minecraft.src.ItemStack;
 import vazkii.codebase.common.CommonUtils;
 import vazkii.modmaker.tree.LeafStringStack;
 import vazkii.modmaker.tree.objective.FuelBranch;
+
+import net.minecraft.src.ItemStack;
+
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 

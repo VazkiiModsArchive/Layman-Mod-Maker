@@ -1,9 +1,10 @@
 package vazkii.modmaker.tree;
 
-import net.minecraft.src.GuiScreen;
-import net.minecraft.src.NBTTagCompound;
 import vazkii.modmaker.gui.GuiLeafEdit;
 import vazkii.modmaker.gui.GuiLeafInteger;
+
+import net.minecraft.src.GuiScreen;
+import net.minecraft.src.NBTTagCompound;
 
 public class LeafInteger extends TreeLeaf<Integer> {
 
@@ -43,7 +44,7 @@ public class LeafInteger extends TreeLeaf<Integer> {
 
 	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
-		write(cmp.getInteger(label()));
+		if (cmp.hasKey(label())) write(cmp.getInteger(label()));
 	}
 
 	public LeafInteger setMax(int max) {

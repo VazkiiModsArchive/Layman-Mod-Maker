@@ -1,7 +1,8 @@
 package vazkii.modmaker.gui;
 
-import net.minecraft.src.GuiScreen;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraft.src.GuiScreen;
 
 public class GuiLeafInteger extends GuiLeafEdit<Integer> {
 

@@ -4,11 +4,12 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeMap;
 
-import net.minecraft.src.FontRenderer;
-import net.minecraft.src.Tessellator;
 import vazkii.codebase.common.CommonUtils;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraft.src.FontRenderer;
+import net.minecraft.src.Tessellator;
 
 public class GuiLeafableBranchContainer extends GuiBranchContainer {
 

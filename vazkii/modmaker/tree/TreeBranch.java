@@ -3,11 +3,12 @@ package vazkii.modmaker.tree;
 import java.util.Collection;
 import java.util.TreeMap;
 
+import vazkii.modmaker.gui.GuiBranch;
+import vazkii.modmaker.gui.GuiCreateBranch;
+
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.NBTBase;
 import net.minecraft.src.NBTTagCompound;
-import vazkii.modmaker.gui.GuiBranch;
-import vazkii.modmaker.gui.GuiCreateBranch;
 
 public abstract class TreeBranch {
 

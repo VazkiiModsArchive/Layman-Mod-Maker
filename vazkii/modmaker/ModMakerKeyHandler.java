@@ -2,11 +2,12 @@ package vazkii.modmaker;
 
 import java.util.EnumSet;
 
-import net.minecraft.src.KeyBinding;
-
 import org.lwjgl.input.Keyboard;
 
 import vazkii.modmaker.gui.GuiStartHere;
+
+import net.minecraft.src.KeyBinding;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.Side;
@@ -29,8 +30,10 @@ public class ModMakerKeyHandler extends KeyHandler {
 
 	@Override
 	public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
-		FMLClientHandler handler = FMLClientHandler.instance();
-		handler.showGuiScreen(new GuiStartHere());
+		if (tickEnd) {
+			FMLClientHandler handler = FMLClientHandler.instance();
+			handler.showGuiScreen(new GuiStartHere());
+		}
 	}
 
 	@Override

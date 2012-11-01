@@ -4,17 +4,19 @@ import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.logging.Level;
 
+import vazkii.modmaker.mod_ModMaker;
+import vazkii.modmaker.mod.BlockCustom;
+import vazkii.modmaker.tree.TreeLeaf;
+import vazkii.modmaker.tree.objective.BlockBranch;
+import vazkii.modmaker.tree.objective.BlockDropBranch;
+
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.StepSound;
-import vazkii.modmaker.mod_ModMaker;
-import vazkii.modmaker.mod.BlockCustom;
-import vazkii.modmaker.tree.TreeLeaf;
-import vazkii.modmaker.tree.objective.BlockBranch;
-import vazkii.modmaker.tree.objective.BlockDropBranch;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -57,7 +59,12 @@ public class BlockEntry extends ModEntry<BlockEntry> {
 		block.setLightValue((Integer) leaves.get("Light Value").read() / 15F);
 		block.setResistance((float) ((Double) leaves.get("Explosion Resistance").read()).doubleValue());
 		block.setHardness((float) ((Double) leaves.get("Hardness").read()).doubleValue());
-		if ((Boolean) leaves.get("Unbreakable").read()) block.setBlockUnbreakable();
+		if ((Boolean) leaves.get("Unbreakable").read()) block.setHardness(-1.0F); // mimic
+		// to
+		// setUnbreakable()
+		// protected
+		// method
+		// >_>
 		block.slipperiness = (float) ((Double) leaves.get("Slipperiness").read()).doubleValue();
 		((BlockCustom) block).setColorOverlay((Integer) leaves.get("Color Overlay").read());
 		((BlockCustom) block).setDropStats((BlockDropBranch) blockBranch.subBranches().get("blockDrop"));

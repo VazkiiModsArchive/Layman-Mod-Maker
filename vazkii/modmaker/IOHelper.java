@@ -6,12 +6,14 @@ import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.src.NBTTagCompound;
 import vazkii.codebase.common.IOUtils;
 import vazkii.modmaker.tree.objective.UserMod;
 
 import com.google.common.io.ByteStreams;
+
+import net.minecraft.client.Minecraft;
+
+import net.minecraft.src.NBTTagCompound;
 
 public class IOHelper {
 

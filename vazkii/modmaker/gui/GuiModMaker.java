@@ -1,10 +1,11 @@
 package vazkii.modmaker.gui;
 
+import updatemanager.client.GuiRestrictedTextField;
+import vazkii.codebase.common.CommonUtils;
+
 import net.minecraft.src.GuiButton;
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.GuiTextField;
-import vazkii.codebase.common.CommonUtils;
-import vazkii.um.client.GuiRestrictedTextField;
 
 public class GuiModMaker extends GuiScreen {
 

@@ -1,9 +1,10 @@
 package vazkii.modmaker.gui;
 
-import net.minecraft.src.GuiButton;
-import net.minecraft.src.GuiScreen;
 import vazkii.codebase.common.CommonUtils;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraft.src.GuiButton;
+import net.minecraft.src.GuiScreen;
 
 public class GuiLeafSprite extends GuiLeafEdit {
 

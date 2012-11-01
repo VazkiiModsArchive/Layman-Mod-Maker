@@ -13,9 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
 
+import vazkii.modmaker.tree.TreeLeaf;
+
 import net.minecraft.src.GuiButton;
 import net.minecraft.src.GuiScreen;
-import vazkii.modmaker.tree.TreeLeaf;
 
 public class GuiLeafImage extends GuiLeafEdit<File> {
 

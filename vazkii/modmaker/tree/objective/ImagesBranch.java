@@ -2,9 +2,10 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
-import net.minecraft.src.GuiScreen;
 import vazkii.modmaker.gui.GuiCreateBranch;
 import vazkii.modmaker.tree.TreeBranch;
+
+import net.minecraft.src.GuiScreen;
 
 public class ImagesBranch extends TreeBranch {
 

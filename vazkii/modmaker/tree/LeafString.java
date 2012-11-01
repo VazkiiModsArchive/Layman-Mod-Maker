@@ -1,9 +1,10 @@
 package vazkii.modmaker.tree;
 
-import net.minecraft.src.GuiScreen;
-import net.minecraft.src.NBTTagCompound;
 import vazkii.modmaker.gui.GuiLeafEdit;
 import vazkii.modmaker.gui.GuiLeafString;
+
+import net.minecraft.src.GuiScreen;
+import net.minecraft.src.NBTTagCompound;
 
 public class LeafString extends TreeLeaf<String> {
 
@@ -46,6 +47,7 @@ public class LeafString extends TreeLeaf<String> {
 
 	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
+		cmp.getTag(label());
 		write(cmp.getString(label()));
 	}
 

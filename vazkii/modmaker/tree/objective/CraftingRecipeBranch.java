@@ -2,13 +2,14 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
-import net.minecraft.src.NBTTagCompound;
 import vazkii.modmaker.entrying.CraftingEntry;
 import vazkii.modmaker.tree.LeafBoolean;
 import vazkii.modmaker.tree.LeafCraftingMatrix;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraft.src.NBTTagCompound;
 
 public class CraftingRecipeBranch extends TreeBranch implements LeafableBranch {
 

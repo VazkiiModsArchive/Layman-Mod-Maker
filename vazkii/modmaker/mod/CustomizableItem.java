@@ -8,4 +8,6 @@ public interface CustomizableItem {
 
 	public void setRarity(int i);
 
+	public void setPotionEffect0(String effect);
+
 }

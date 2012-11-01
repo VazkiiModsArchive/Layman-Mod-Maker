@@ -2,15 +2,16 @@ package vazkii.modmaker.entrying;
 
 import java.util.Random;
 
+import vazkii.modmaker.mod.OreGenerator;
+import vazkii.modmaker.tree.BranchHelper;
+import vazkii.modmaker.tree.objective.OreGenerateBranch;
+
 import net.minecraft.src.ChunkProviderEnd;
 import net.minecraft.src.ChunkProviderFlat;
 import net.minecraft.src.ChunkProviderGenerate;
 import net.minecraft.src.ChunkProviderHell;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.World;
-import vazkii.modmaker.mod.OreGenerator;
-import vazkii.modmaker.tree.BranchHelper;
-import vazkii.modmaker.tree.objective.OreGenerateBranch;
 
 public class OreEntry extends ModEntry<OreEntry> {
 

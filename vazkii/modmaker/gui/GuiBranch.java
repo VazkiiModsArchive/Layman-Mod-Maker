@@ -4,9 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-import net.minecraft.src.GuiButton;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
+
+import net.minecraft.src.GuiButton;
 
 public class GuiBranch extends GuiModMaker {
 
@@ -104,8 +105,8 @@ public class GuiBranch extends GuiModMaker {
 		for (String s1 : organizedBranches)
 			s = s.concat(s1 + " > ");
 
-		if (s.endsWith(" > ")) s = s.substring(0, s.length() - 3);
-		return s;
+				if (s.endsWith(" > ")) s = s.substring(0, s.length() - 3);
+				return s;
 	}
 
 }

@@ -2,12 +2,13 @@ package vazkii.modmaker.tree;
 
 import java.io.File;
 
-import net.minecraft.src.GuiScreen;
-import net.minecraft.src.NBTTagCompound;
 import vazkii.modmaker.IOHelper;
 import vazkii.modmaker.entrying.ImageEntry;
 import vazkii.modmaker.gui.GuiLeafEdit;
 import vazkii.modmaker.gui.GuiLeafImage;
+
+import net.minecraft.src.GuiScreen;
+import net.minecraft.src.NBTTagCompound;
 
 public class LeafImage extends TreeLeaf<File> {
 
@@ -61,8 +62,8 @@ public class LeafImage extends TreeLeaf<File> {
 
 	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
-		fileName = cmp.getString(label() + "_name");
-		array = cmp.getByteArray(label() + "_array");
+		if (cmp.hasKey(label() + "_name")) fileName = cmp.getString(label() + "_name");
+		if (cmp.hasKey(label() + "_array")) array = cmp.getByteArray(label() + "_array");
 		if (array != null) new ImageEntry().init(((LeafableBranch) getBranch()).leaves().get("Image Name").read(), array, BranchHelper.getModFromBranch(getBranch()).label()).readEntry();
 	}
 

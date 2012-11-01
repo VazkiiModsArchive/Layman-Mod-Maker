@@ -7,7 +7,7 @@ import vazkii.modmaker.tree.TreeBranch;
 
 import net.minecraft.src.GuiScreen;
 
-public class BlocksBranch extends TreeBranch {
+public class AchievementsBranch extends TreeBranch {
 
 	private String label;
 	private TreeBranch superBranch;
@@ -32,7 +32,7 @@ public class BlocksBranch extends TreeBranch {
 
 	@Override
 	public void addBranch(String branchName, TreeBranch branch) {
-		if (branch instanceof BlockBranch) subBranches.put(branchName, branch);
+		if (branch instanceof AchievementBranch) subBranches.put(branchName, branch);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class BlocksBranch extends TreeBranch {
 
 	@Override
 	public GuiCreateBranch getBranchCreationGui(GuiScreen screen) {
-		return new GuiCreateBranch(this, "Block", BlockBranch.class, screen);
+		return new GuiCreateBranch(this, "Achievement", AchievementBranch.class, screen);
 	}
 
 }

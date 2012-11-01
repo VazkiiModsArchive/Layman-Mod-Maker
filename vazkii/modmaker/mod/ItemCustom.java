@@ -15,7 +15,7 @@ public class ItemCustom extends Item implements CustomizableItem {
 	}
 
 	@Override
-	public int getColorFromDamage(int par1, int par2) {
+	public int func_82790_a(ItemStack par1, int par2) {
 		return colorOverlay;
 	}
 
@@ -57,6 +57,11 @@ public class ItemCustom extends Item implements CustomizableItem {
 			}
 		}
 		this.rarity = rarity;
+	}
+
+	@Override
+	public void setPotionEffect0(String effect) {
+		if (!effect.equals("none")) setPotionEffect(effect);
 	}
 
 }

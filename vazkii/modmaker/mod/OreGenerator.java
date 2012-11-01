@@ -4,12 +4,14 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
+import vazkii.codebase.common.CommonUtils;
+import vazkii.modmaker.entrying.OreEntry;
+
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
-import vazkii.codebase.common.CommonUtils;
-import vazkii.modmaker.entrying.OreEntry;
+
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class OreGenerator implements IWorldGenerator {

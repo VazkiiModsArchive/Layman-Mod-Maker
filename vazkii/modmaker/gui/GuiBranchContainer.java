@@ -5,12 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
 
-import net.minecraft.src.FontRenderer;
-import net.minecraft.src.GuiSlot;
-import net.minecraft.src.Tessellator;
 import vazkii.codebase.common.CommonUtils;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
+
+import net.minecraft.src.FontRenderer;
+import net.minecraft.src.GuiSlot;
+import net.minecraft.src.Tessellator;
 
 public class GuiBranchContainer extends GuiSlot {
 

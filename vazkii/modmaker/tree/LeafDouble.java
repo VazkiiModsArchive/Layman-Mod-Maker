@@ -1,9 +1,10 @@
 package vazkii.modmaker.tree;
 
-import net.minecraft.src.GuiScreen;
-import net.minecraft.src.NBTTagCompound;
 import vazkii.modmaker.gui.GuiLeafDouble;
 import vazkii.modmaker.gui.GuiLeafEdit;
+
+import net.minecraft.src.GuiScreen;
+import net.minecraft.src.NBTTagCompound;
 
 public class LeafDouble extends TreeLeaf<Double> {
 
@@ -43,7 +44,7 @@ public class LeafDouble extends TreeLeaf<Double> {
 
 	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
-		write(cmp.getDouble(label()));
+		if (cmp.hasKey(label())) write(cmp.getDouble(label()));
 	}
 
 	public LeafDouble setMax(double max) {

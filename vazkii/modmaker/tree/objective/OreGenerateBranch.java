@@ -2,13 +2,14 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
-import net.minecraft.src.NBTTagCompound;
 import vazkii.modmaker.entrying.OreEntry;
 import vazkii.modmaker.tree.LeafInteger;
 import vazkii.modmaker.tree.LeafString;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraft.src.NBTTagCompound;
 
 public class OreGenerateBranch extends TreeBranch implements LeafableBranch {
 

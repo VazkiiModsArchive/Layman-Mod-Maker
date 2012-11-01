@@ -1,11 +1,12 @@
 package vazkii.modmaker.gui;
 
-import net.minecraft.src.GuiButton;
-import net.minecraft.src.GuiTextField;
-import net.minecraft.src.MathHelper;
 import vazkii.modmaker.IOHelper;
 import vazkii.modmaker.mod_ModMaker;
 import vazkii.modmaker.tree.objective.UserMod;
+
+import net.minecraft.src.GuiButton;
+import net.minecraft.src.GuiTextField;
+import net.minecraft.src.MathHelper;
 
 public class GuiNewMod extends GuiModMaker {
 

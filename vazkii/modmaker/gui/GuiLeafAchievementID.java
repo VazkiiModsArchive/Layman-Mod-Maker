@@ -1,13 +1,13 @@
 package vazkii.modmaker.gui;
 
+import vazkii.modmaker.mod.Achievements;
 import vazkii.modmaker.tree.TreeLeaf;
 
-import net.minecraft.src.Block;
 import net.minecraft.src.GuiScreen;
 
-public class GuiLeafBlockID extends GuiLeafInteger {
+public class GuiLeafAchievementID extends GuiLeafInteger {
 
-	public GuiLeafBlockID(GuiScreen parent, TreeLeaf leaf, String propName, int max, int min) {
+	public GuiLeafAchievementID(GuiScreen parent, TreeLeaf leaf, String propName, int max, int min) {
 		super(parent, leaf, propName, max, min);
 	}
 
@@ -16,7 +16,7 @@ public class GuiLeafBlockID extends GuiLeafInteger {
 		int i = getValue();
 		if (i > max) return propName + " is too high, max is " + max + ".";
 		if (i < min) return propName + " is too low, min is " + min + ".";
-		if (Block.blocksList[i] != null) return "Block ID " + i + " is already in use.";
+		if (Achievements.fromID(i) != null) return "Achievement ID " + i + " is already in use.";
 
 		return null;
 	}

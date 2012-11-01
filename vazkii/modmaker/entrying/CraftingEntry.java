@@ -3,12 +3,13 @@ package vazkii.modmaker.entrying;
 import java.util.ArrayList;
 import java.util.List;
 
+import vazkii.modmaker.tree.LeafStringStack;
+import vazkii.modmaker.tree.objective.CraftingRecipeBranch;
+
 import net.minecraft.src.CraftingManager;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ShapedRecipes;
 import net.minecraft.src.ShapelessRecipes;
-import vazkii.modmaker.tree.LeafStringStack;
-import vazkii.modmaker.tree.objective.CraftingRecipeBranch;
 
 public class CraftingEntry extends ModEntry<CraftingEntry> {
 

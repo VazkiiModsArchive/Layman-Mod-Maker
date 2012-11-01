@@ -1,8 +1,9 @@
 package vazkii.modmaker.gui;
 
+import vazkii.modmaker.tree.TreeLeaf;
+
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.Item;
-import vazkii.modmaker.tree.TreeLeaf;
 
 public class GuiLeafItemID extends GuiLeafInteger {
 

@@ -2,9 +2,10 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
-import net.minecraft.src.NBTTagCompound;
 import vazkii.modmaker.tree.BranchHelper;
 import vazkii.modmaker.tree.TreeBranch;
+
+import net.minecraft.src.NBTTagCompound;
 
 public class UserMod extends TreeBranch {
 
@@ -21,6 +22,7 @@ public class UserMod extends TreeBranch {
 		addBranch("blocks", new BlocksBranch().init(this, "Blocks"));
 		addBranch("oreGeneration", new OreGenerationBranch().init(this, "Ore Generation"));
 		addBranch("recipes", new RecipesBranch().init(this, "Recipes"));
+		addBranch("achievements", new AchievementsBranch().init(this, "Achievements"));
 		return this;
 	}
 
@@ -74,6 +76,7 @@ public class UserMod extends TreeBranch {
 		if (cmp.hasKey("Blocks")) readBranch(cmp.getCompoundTag("Blocks"));
 		if (cmp.hasKey("Ore Generation")) readBranch(cmp.getCompoundTag("Ore Generation"));
 		if (cmp.hasKey("Recipes")) readBranch(cmp.getCompoundTag("Recipes"));
+		if (cmp.hasKey("Achievements")) readBranch(cmp.getCompoundTag("Achievements"));
 	}
 
 	private void readBranch(NBTTagCompound cmp) {

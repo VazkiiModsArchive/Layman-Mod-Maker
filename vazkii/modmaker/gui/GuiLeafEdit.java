@@ -1,12 +1,13 @@
 package vazkii.modmaker.gui;
 
-import net.minecraft.src.GuiButton;
-import net.minecraft.src.GuiScreen;
-import net.minecraft.src.GuiTextField;
 import vazkii.codebase.common.ColorCode;
 import vazkii.modmaker.IOHelper;
 import vazkii.modmaker.tree.BranchHelper;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraft.src.GuiButton;
+import net.minecraft.src.GuiScreen;
+import net.minecraft.src.GuiTextField;
 
 public abstract class GuiLeafEdit<T> extends GuiModMaker {
 

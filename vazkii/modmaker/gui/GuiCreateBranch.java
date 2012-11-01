@@ -1,12 +1,13 @@
 package vazkii.modmaker.gui;
 
+import vazkii.modmaker.IOHelper;
+import vazkii.modmaker.tree.BranchHelper;
+import vazkii.modmaker.tree.TreeBranch;
+
 import net.minecraft.src.GuiButton;
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.GuiTextField;
 import net.minecraft.src.MathHelper;
-import vazkii.modmaker.IOHelper;
-import vazkii.modmaker.tree.BranchHelper;
-import vazkii.modmaker.tree.TreeBranch;
 
 public class GuiCreateBranch extends GuiModMaker {
 

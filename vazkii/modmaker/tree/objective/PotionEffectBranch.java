@@ -2,6 +2,7 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.tree.LeafDouble;
 import vazkii.modmaker.tree.LeafInteger;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
@@ -31,6 +32,7 @@ public class PotionEffectBranch extends TreeBranch implements LeafableBranch {
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Potion ID")).setMax(19).setMin(0));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Potion Time")).setMin(0));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Potion Level")).setMax(4).setMin(0));
+		addLeaf(((LeafDouble) new LeafDouble().init(this, 1D, "Chance")).setMax(1D).setMin(0D));
 		return this;
 	}
 

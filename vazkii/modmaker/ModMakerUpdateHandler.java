@@ -3,16 +3,17 @@ package vazkii.modmaker;
 import java.awt.Dimension;
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
+import updatemanager.client.GuiModList;
+import updatemanager.common.UpdateManager;
+import updatemanager.common.UpdateManagerMod;
+import vazkii.codebase.common.CommonUtils;
+import vazkii.codebase.common.VazcoreReference;
+
 import net.minecraft.src.FontRenderer;
 import net.minecraft.src.ItemStack;
 
-import org.lwjgl.opengl.GL11;
-
-import vazkii.codebase.common.CommonUtils;
-import vazkii.codebase.common.VazcoreReference;
-import vazkii.um.client.GuiModList;
-import vazkii.um.common.UpdateManager;
-import vazkii.um.common.UpdateManagerMod;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;

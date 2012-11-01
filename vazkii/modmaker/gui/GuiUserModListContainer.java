@@ -3,13 +3,14 @@ package vazkii.modmaker.gui;
 import java.util.Arrays;
 import java.util.List;
 
+import vazkii.codebase.common.CommonUtils;
+import vazkii.modmaker.mod_ModMaker;
+import vazkii.modmaker.tree.objective.UserMod;
+
 import net.minecraft.src.FontRenderer;
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.GuiSlot;
 import net.minecraft.src.Tessellator;
-import vazkii.codebase.common.CommonUtils;
-import vazkii.modmaker.mod_ModMaker;
-import vazkii.modmaker.tree.objective.UserMod;
 
 public class GuiUserModListContainer extends GuiSlot {
 

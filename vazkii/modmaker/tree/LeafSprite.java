@@ -1,11 +1,12 @@
 package vazkii.modmaker.tree;
 
+import vazkii.modmaker.gui.GuiLeafEdit;
+import vazkii.modmaker.gui.GuiLeafSprite;
+
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.NBTBase;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagInt;
-import vazkii.modmaker.gui.GuiLeafEdit;
-import vazkii.modmaker.gui.GuiLeafSprite;
 
 public class LeafSprite extends TreeLeaf {
 
@@ -43,9 +44,11 @@ public class LeafSprite extends TreeLeaf {
 
 	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
-		NBTBase tag = cmp.getTag(label());
-		if (tag instanceof NBTTagInt) write(cmp.getInteger(label()));
-		else write(cmp.getString(label()));
+		if (cmp.hasKey(label())) {
+			NBTBase tag = cmp.getTag(label());
+			if (tag instanceof NBTTagInt) write(cmp.getInteger(label()));
+			else write(cmp.getString(label()));
+		}
 	}
 
 	@Override

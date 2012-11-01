@@ -1,9 +1,10 @@
 package vazkii.modmaker.tree;
 
-import net.minecraft.src.GuiScreen;
-import net.minecraft.src.NBTTagCompound;
 import vazkii.modmaker.gui.GuiLeafBoolean;
 import vazkii.modmaker.gui.GuiLeafEdit;
+
+import net.minecraft.src.GuiScreen;
+import net.minecraft.src.NBTTagCompound;
 
 public class LeafBoolean extends TreeLeaf<Boolean> {
 
@@ -40,7 +41,7 @@ public class LeafBoolean extends TreeLeaf<Boolean> {
 
 	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
-		write(cmp.getBoolean(label()));
+		if (cmp.hasKey(label())) write(cmp.getBoolean(label()));
 	}
 
 	@Override
