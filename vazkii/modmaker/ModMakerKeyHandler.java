@@ -13,7 +13,8 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.asm.SideOnly;
 
-@SideOnly(Side.CLIENT) public class ModMakerKeyHandler extends KeyHandler {
+@SideOnly(Side.CLIENT)
+public class ModMakerKeyHandler extends KeyHandler {
 
 	public static KeyBinding key = new KeyBinding("Mod Maker", Keyboard.KEY_F7);
 
@@ -33,7 +34,8 @@ import cpw.mods.fml.common.asm.SideOnly;
 	}
 
 	@Override
-	public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {}
+	public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {
+	}
 
 	@Override
 	public EnumSet<TickType> ticks() {

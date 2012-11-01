@@ -49,22 +49,22 @@ public class GuiBranch extends GuiModMaker {
 	@Override
 	protected void actionPerformed(GuiButton par1GuiButton) {
 		switch (par1GuiButton.id) {
-		case 0: {
-			if (selected != null) mc.displayGuiScreen(selected instanceof LeafableBranch ? new GuiLeafableBranch(selected, selected.isConstant()) : new GuiBranch(selected, selected.isConstant()));
-			break;
-		}
-		case 1: {
-			mc.displayGuiScreen(branch.getBranchCreationGui(this));
-			break;
-		}
-		case 2: {
-			if (selected != null) branch.deleteBranch(selectedName);
-			break;
-		}
-		case 3: {
-			TreeBranch superBranch = branch.superBranch();
-			mc.displayGuiScreen(superBranch == null ? new GuiUserModList() : superBranch instanceof LeafableBranch ? new GuiLeafableBranch(superBranch, superBranch.isConstant()) : new GuiBranch(superBranch, superBranch.isConstant()));
-		}
+			case 0: {
+				if (selected != null) mc.displayGuiScreen(selected instanceof LeafableBranch ? new GuiLeafableBranch(selected, selected.isConstant()) : new GuiBranch(selected, selected.isConstant()));
+				break;
+			}
+			case 1: {
+				mc.displayGuiScreen(branch.getBranchCreationGui(this));
+				break;
+			}
+			case 2: {
+				if (selected != null) branch.deleteBranch(selectedName);
+				break;
+			}
+			case 3: {
+				TreeBranch superBranch = branch.superBranch();
+				mc.displayGuiScreen(superBranch == null ? new GuiUserModList() : superBranch instanceof LeafableBranch ? new GuiLeafableBranch(superBranch, superBranch.isConstant()) : new GuiBranch(superBranch, superBranch.isConstant()));
+			}
 		}
 
 		super.actionPerformed(par1GuiButton);
@@ -104,8 +104,8 @@ public class GuiBranch extends GuiModMaker {
 		for (String s1 : organizedBranches)
 			s = s.concat(s1 + " > ");
 
-				if (s.endsWith(" > ")) s = s.substring(0, s.length() - 3);
-				return s;
+		if (s.endsWith(" > ")) s = s.substring(0, s.length() - 3);
+		return s;
 	}
 
 }

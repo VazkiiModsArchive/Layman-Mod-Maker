@@ -106,8 +106,7 @@ public class BlockCustom extends Block implements CustomizableBlock {
 					EntityFallingSand var9 = new EntityFallingSand(par1World, par2 + 0.5F, par3 + 0.5F, par4 + 0.5F, blockID);
 					par1World.spawnEntityInWorld(var9);
 				}
-			}
-			else {
+			} else {
 				par1World.setBlockWithNotify(par2, par3, par4, 0);
 				while (canFallBelow(par1World, par2, par3 - 1, par4) && par3 > 0)
 					--par3;

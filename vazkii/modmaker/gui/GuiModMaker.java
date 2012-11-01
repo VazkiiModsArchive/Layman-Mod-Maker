@@ -38,6 +38,7 @@ public class GuiModMaker extends GuiScreen {
 		return new GuiRestrictedTextField(CommonUtils.getMc().fontRenderer, width / 2 - (12 + size) / 2, height, size + 12, 20, restriction);
 	}
 
-	public void drawExtras(int par1, int par2, float par3) {}
+	public void drawExtras(int par1, int par2, float par3) {
+	}
 
 }

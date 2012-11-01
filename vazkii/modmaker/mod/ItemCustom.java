@@ -43,18 +43,18 @@ public class ItemCustom extends Item implements CustomizableItem {
 	public void setRarity(int i) {
 		EnumRarity rarity = EnumRarity.common;
 		switch (i) {
-		case 1: {
-			rarity = EnumRarity.uncommon;
-			break;
-		}
-		case 2: {
-			rarity = EnumRarity.rare;
-			break;
-		}
-		case 3: {
-			rarity = EnumRarity.epic;
-			break;
-		}
+			case 1: {
+				rarity = EnumRarity.uncommon;
+				break;
+			}
+			case 2: {
+				rarity = EnumRarity.rare;
+				break;
+			}
+			case 3: {
+				rarity = EnumRarity.epic;
+				break;
+			}
 		}
 		this.rarity = rarity;
 	}

@@ -27,7 +27,7 @@ public class OreGenerateBranch extends TreeBranch implements LeafableBranch {
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Min Height")).setMin(0).setMax(256));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 64, "Max Height")).setMin(0).setMax(256));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 1, "Block to Replace")).setMin(0).setMax(4096));
-		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Block to Set")).setMin(0).setMax(256));
+		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Block to Set")).setMin(0).setMax(4096));
 		return this;
 	}
 
@@ -73,9 +73,11 @@ public class OreGenerateBranch extends TreeBranch implements LeafableBranch {
 	}
 
 	@Override
-	public void deleteBranch(String branchName) {}
+	public void deleteBranch(String branchName) {
+	}
 
 	@Override
-	public void deleteLeaf(String name) {}
+	public void deleteLeaf(String name) {
+	}
 
 }

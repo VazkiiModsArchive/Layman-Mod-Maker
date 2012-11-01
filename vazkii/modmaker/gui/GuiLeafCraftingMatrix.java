@@ -58,21 +58,20 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 		for (GuiTextField[] fArray : matrixTextFields)
 			for (GuiTextField f : fArray)
 				f.drawTextBox();
-					fontRenderer.drawString("" + horizontal.charAt(0), 85, 86, 0xFFFFFF);
-					fontRenderer.drawString("" + horizontal.charAt(1), 170, 86, 0xFFFFFF);
-					fontRenderer.drawString("" + horizontal.charAt(2), 255, 86, 0xFFFFFF);
-					fontRenderer.drawString("" + vertical.charAt(0), 38, 106, 0xFFFFFF);
-					fontRenderer.drawString("" + vertical.charAt(1), 38, 136, 0xFFFFFF);
-					fontRenderer.drawString("" + vertical.charAt(2), 38, 166, 0xFFFFFF);
+		fontRenderer.drawString("" + horizontal.charAt(0), 85, 86, 0xFFFFFF);
+		fontRenderer.drawString("" + horizontal.charAt(1), 170, 86, 0xFFFFFF);
+		fontRenderer.drawString("" + horizontal.charAt(2), 255, 86, 0xFFFFFF);
+		fontRenderer.drawString("" + vertical.charAt(0), 38, 106, 0xFFFFFF);
+		fontRenderer.drawString("" + vertical.charAt(1), 38, 136, 0xFFFFFF);
+		fontRenderer.drawString("" + vertical.charAt(2), 38, 166, 0xFFFFFF);
 
-					outputTextField.drawTextBox();
+		outputTextField.drawTextBox();
 	}
 
 	@Override
 	public String getError() {
 		boolean foundNonEmpty = false;
-		findNonEmpty:
-		{
+		findNonEmpty: {
 			for (int i = 0; i < 3; i++)
 				for (int i1 = 0; i1 < 3; i1++)
 					if (!MathHelper.stringNullOrLengthZero(matrixTextFields[i][i1].getText())) {
@@ -115,8 +114,7 @@ public class GuiLeafCraftingMatrix extends GuiLeafEdit<String> {
 			}
 
 			return null;
-		}
-		else {
+		} else {
 			if (tokens.length != 2 || s.endsWith(":")) return "Invalid syntax, the correct one is 'ID:Metadata'.";
 
 			try {

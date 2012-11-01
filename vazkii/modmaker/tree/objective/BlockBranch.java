@@ -90,9 +90,11 @@ public class BlockBranch extends TreeBranch implements LeafableBranch {
 	}
 
 	@Override
-	public void deleteBranch(String branchName) {}
+	public void deleteBranch(String branchName) {
+	}
 
 	@Override
-	public void deleteLeaf(String name) {}
+	public void deleteLeaf(String name) {
+	}
 
 }

@@ -35,8 +35,7 @@ public class ImageEntry extends ModEntry<ImageEntry> {
 				outStream.write(byteData);
 				outStream.closeEntry();
 				outStream.close();
-			}
-			else mod_ModMaker.claimedSprites.add(fileName);
+			} else mod_ModMaker.claimedSprites.add(fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

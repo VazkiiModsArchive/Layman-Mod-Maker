@@ -56,15 +56,15 @@ public class ItemEntry extends ModEntry<ItemEntry> {
 				((ItemFood) item).setPotionEffect(potionID, potionTime, potionLevel, 1F);
 				((ItemFood) item).setAlwaysEdible();
 			}
-		}
-		else if (name.equals("normal")) item = new ItemCustom(itemID - 256);
+		} else if (name.equals("normal")) item = new ItemCustom(itemID - 256);
 
 		int iconIndex = 0;
 		Object o = leaves.get("Sprite").read();
 
 		try {
 			iconIndex = o instanceof Integer ? (Integer) o : mod_ModMaker.claimedSprites.contains(o) ? ModLoader.addOverride("/gui/items.png", "/" + (String) o) : 0;
-		} catch (Throwable e) {}
+		} catch (Throwable e) {
+		}
 		item.setIconIndex(iconIndex);
 		item.setMaxStackSize((Integer) leaves.get("Max Stack Size").read());
 		if ((Boolean) leaves.get("Full 3D").read()) item.setFull3D();

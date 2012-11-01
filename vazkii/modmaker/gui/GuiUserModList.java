@@ -10,7 +10,8 @@ public class GuiUserModList extends GuiModMaker {
 	GuiUserModListContainer modList;
 	public String mod;
 
-	public GuiUserModList() {}
+	public GuiUserModList() {
+	}
 
 	@Override
 	public void initGui() {
@@ -26,26 +27,28 @@ public class GuiUserModList extends GuiModMaker {
 	@Override
 	protected void actionPerformed(GuiButton par1GuiButton) {
 		switch (par1GuiButton.id) {
-		case 0: {
-			mc.displayGuiScreen(new GuiNewMod());
-			break;
-		}
-		case 1: {
-			if (mod != null) mc.displayGuiScreen(new GuiBranch(mod_ModMaker.userMods.get(mod), true));
-			break;
-		}
-		case 2: {
-			if (mod != null) {
-				mod_ModMaker.userMods.remove(mod);
-				modList.selected = -1;
-				File f = new File(mod_ModMaker.usermodsFile, mod + ".dat");
-				System.out.println("Deleted " + f + " " + f.delete());
+			case 0: {
+				mc.displayGuiScreen(new GuiNewMod());
+				break;
 			}
-			break;
-		}
-		case 3: {
-			mc.displayGuiScreen(new GuiStartHere());
-		}
+			case 1: {
+				if (mod != null) mc.displayGuiScreen(new GuiBranch(mod_ModMaker.userMods.get(mod), true));
+				break;
+			}
+			case 2: {
+				if (mod != null) {
+					mod_ModMaker.userMods.remove(mod);
+					modList.selected = -1;
+					File f = new File(mod_ModMaker.usermodsFile, mod + ".dat");
+					boolean fileDeleted = f.delete();
+					System.out.println("Deleted " + f + " " + fileDeleted);
+					if (!fileDeleted) f.deleteOnExit();
+				}
+				break;
+			}
+			case 3: {
+				mc.displayGuiScreen(new GuiStartHere());
+			}
 		}
 
 		super.actionPerformed(par1GuiButton);
