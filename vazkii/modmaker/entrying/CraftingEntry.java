@@ -3,6 +3,9 @@ package vazkii.modmaker.entrying;
 import java.util.ArrayList;
 import java.util.List;
 
+import vazkii.modmaker.addon.event.EntryInitEvent;
+import vazkii.modmaker.addon.event.EntryReadEvent;
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
 import vazkii.modmaker.tree.LeafStringStack;
 import vazkii.modmaker.tree.objective.CraftingRecipeBranch;
 
@@ -11,18 +14,28 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.ShapedRecipes;
 import net.minecraft.src.ShapelessRecipes;
 
+import net.minecraftforge.common.MinecraftForge;
+
+/**
+ * <b>On read sends:<br>
+ * <br>
+ * </b> Before and After: nothing<br>
+ */
 public class CraftingEntry extends ModEntry<CraftingEntry> {
 
 	CraftingRecipeBranch branch;
 
 	@Override
 	public CraftingEntry init(Object... params) {
+		MinecraftForge.EVENT_BUS.post(new EntryInitEvent(EventPeriod.BEFORE, this));
 		branch = (CraftingRecipeBranch) params[0];
+		MinecraftForge.EVENT_BUS.post(new EntryInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 
 	@Override
 	public void readEntry() {
+		MinecraftForge.EVENT_BUS.post(new EntryReadEvent(EventPeriod.BEFORE, this));
 		String s = (String) branch.leaves().get("Recipe").read();
 		boolean shapeless = (Boolean) branch.leaves().get("Shapeless").read();
 
@@ -79,8 +92,6 @@ public class CraftingEntry extends ModEntry<CraftingEntry> {
 		if (!hasLines[0]) maxWidth--;
 		height = maxWidth;
 
-		System.out.println(maxWidth + " " + maxHeight);
-
 		if (maxWidth != 0 && maxHeight != 0) {
 			List<ItemStack> stacksList = new ArrayList();
 			for (int i = 0; i < 3; i++) {
@@ -100,5 +111,6 @@ public class CraftingEntry extends ModEntry<CraftingEntry> {
 
 			CraftingManager.getInstance().getRecipeList().add(new ShapedRecipes(width, height, stacksList.toArray(new ItemStack[stacksList.size()]), output));
 		}
+		MinecraftForge.EVENT_BUS.post(new EntryReadEvent(EventPeriod.AFTER, this));
 	}
 }

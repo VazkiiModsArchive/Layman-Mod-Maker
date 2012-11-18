@@ -1,6 +1,8 @@
 package vazkii.modmaker.entrying;
 
-public abstract class ModEntry<T> {
+import vazkii.modmaker.addon.Addonable;
+
+public abstract class ModEntry<T> implements Addonable {
 
 	public abstract T init(Object... params);
 

@@ -2,6 +2,8 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.entrying.CraftingEntry;
 import vazkii.modmaker.tree.LeafBoolean;
 import vazkii.modmaker.tree.LeafCraftingMatrix;
@@ -10,6 +12,8 @@ import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
 
 import net.minecraft.src.NBTTagCompound;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class CraftingRecipeBranch extends TreeBranch implements LeafableBranch {
 
@@ -22,8 +26,10 @@ public class CraftingRecipeBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.BEFORE, this));
 		addLeaf(new LeafCraftingMatrix().init(this, "1:0,x,x;x,x,x;x,x,x;1:1:0", "Recipe"));
 		addLeaf(new LeafBoolean().init(this, false, "Shapeless"));
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 

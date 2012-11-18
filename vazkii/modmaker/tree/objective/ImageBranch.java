@@ -2,11 +2,15 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.tree.LeafImage;
 import vazkii.modmaker.tree.LeafStringPNG;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class ImageBranch extends TreeBranch implements LeafableBranch {
 
@@ -19,8 +23,10 @@ public class ImageBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.BEFORE, this));
 		addLeaf(new LeafStringPNG().init(this, "default.png", "Image Name"));
 		addLeaf(new LeafImage().init(this, null, "Image File"));
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 

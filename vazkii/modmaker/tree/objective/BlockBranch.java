@@ -2,6 +2,8 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.entrying.BlockEntry;
 import vazkii.modmaker.tree.LeafBlockID;
 import vazkii.modmaker.tree.LeafBoolean;
@@ -15,6 +17,8 @@ import vazkii.modmaker.tree.TreeLeaf;
 
 import net.minecraft.src.NBTTagCompound;
 
+import net.minecraftforge.common.MinecraftForge;
+
 public class BlockBranch extends TreeBranch implements LeafableBranch {
 
 	private String label;
@@ -26,6 +30,7 @@ public class BlockBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.BEFORE, this));
 		addBranch("blockDrop", new BlockDropBranch().init(this, "Dropped Item"));
 		addLeaf(((LeafInteger) new LeafBlockID().init(this, 0, "Block ID")).setMax(4096).setMin(1));
 		addLeaf(new LeafSprite().init(this, 0, "Sprite"));
@@ -35,12 +40,14 @@ public class BlockBranch extends TreeBranch implements LeafableBranch {
 		addLeaf(((LeafDouble) new LeafDouble().init(this, 0D, "Explosion Resistance")).setMin(0D));
 		addLeaf(((LeafDouble) new LeafDouble().init(this, 0D, "Hardness")).setMin(0D));
 		addLeaf(new LeafBoolean().init(this, false, "Unbreakable"));
-		addLeaf(((LeafDouble) new LeafDouble().init(this, 0.6, "Slipperiness")).setMin(0D));
-		addLeaf(((LeafInteger) new LeafInteger().init(this, 0xFFFFFF, "Color Overlay")).setMax(0xFFFFFF).setMin(0x000000));
+		addLeaf(((LeafDouble) new LeafDouble().init(this, 0.6, "Slipperiness")).setMin(0.05));
+		addLeaf(((LeafInteger) new LeafInteger().init(this, 0xFFFFFF, "Color Overlay")).setMax(0xFFFFFF).setMin(0x0));
 		addLeaf(new LeafString().init(this, "", "Block Name"));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Creative Tab")).setMax(12).setMin(0));
 		addLeaf(new LeafBoolean().init(this, true, "Opaque"));
 		addLeaf(new LeafBoolean().init(this, false, "Gravity"));
+		addLeaf(new LeafString().init(this, "regular", "Block Type", "regular"));
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 

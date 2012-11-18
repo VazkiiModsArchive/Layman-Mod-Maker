@@ -2,10 +2,14 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.gui.GuiCreateBranch;
 import vazkii.modmaker.tree.TreeBranch;
 
 import net.minecraft.src.GuiScreen;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class CraftingRecipesBranch extends TreeBranch {
 
@@ -17,6 +21,7 @@ public class CraftingRecipesBranch extends TreeBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.DURING, this));
 		return this;
 	}
 

@@ -15,7 +15,7 @@ public class ItemCustomFood extends ItemFood implements CustomizableItem {
 	}
 
 	@Override
-	public int func_82790_a(ItemStack par1, int par2) {
+	public int getColorFromItemStack(ItemStack par1, int par2) {
 		return colorOverlay;
 	}
 

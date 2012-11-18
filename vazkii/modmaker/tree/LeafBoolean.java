@@ -1,10 +1,16 @@
 package vazkii.modmaker.tree;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.LeafInitEvent;
+import vazkii.modmaker.addon.event.LeafNBTReadEvent;
+import vazkii.modmaker.addon.event.LeafNBTWriteEvent;
 import vazkii.modmaker.gui.GuiLeafBoolean;
 import vazkii.modmaker.gui.GuiLeafEdit;
 
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.NBTTagCompound;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class LeafBoolean extends TreeLeaf<Boolean> {
 
@@ -26,6 +32,7 @@ public class LeafBoolean extends TreeLeaf<Boolean> {
 	public TreeLeaf init(TreeBranch superBranch, Boolean _default, String label) {
 		this.label = label;
 		branch = superBranch;
+		MinecraftForge.EVENT_BUS.post(new LeafInitEvent(EventPeriod.DURING, this));
 		return write(_default);
 	}
 
@@ -36,12 +43,16 @@ public class LeafBoolean extends TreeLeaf<Boolean> {
 
 	@Override
 	public void writeToNBT(NBTTagCompound cmp, TreeBranch superBranch) {
+		MinecraftForge.EVENT_BUS.post(new LeafNBTWriteEvent(EventPeriod.BEFORE, this, superBranch, cmp));
 		cmp.setBoolean(label(), read());
+		MinecraftForge.EVENT_BUS.post(new LeafNBTReadEvent(EventPeriod.AFTER, this, superBranch, cmp));
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
+		MinecraftForge.EVENT_BUS.post(new LeafNBTReadEvent(EventPeriod.BEFORE, this, superBranch, cmp));
 		if (cmp.hasKey(label())) write(cmp.getBoolean(label()));
+		MinecraftForge.EVENT_BUS.post(new LeafNBTReadEvent(EventPeriod.AFTER, this, superBranch, cmp));
 	}
 
 	@Override

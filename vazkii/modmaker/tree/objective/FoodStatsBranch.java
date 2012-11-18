@@ -2,12 +2,16 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.tree.LeafBoolean;
 import vazkii.modmaker.tree.LeafDouble;
 import vazkii.modmaker.tree.LeafInteger;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class FoodStatsBranch extends TreeBranch implements LeafableBranch {
 
@@ -30,10 +34,12 @@ public class FoodStatsBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.superBranch = superBranch;
 		this.label = label;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.BEFORE, this));
 		addBranch("potionEffects", new PotionEffectBranch().init(this, "Potion Effect"));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Food Value")).setMax(20).setMin(0));
 		addLeaf(((LeafDouble) new LeafDouble().init(this, 0D, "Saturation Value")).setMax(2.0).setMin(0D));
 		addLeaf(new LeafBoolean().init(this, false, "Wolf Food"));
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 

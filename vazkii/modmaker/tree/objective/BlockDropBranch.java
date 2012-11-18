@@ -2,10 +2,14 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.tree.LeafInteger;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class BlockDropBranch extends TreeBranch implements LeafableBranch {
 
@@ -28,10 +32,12 @@ public class BlockDropBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.superBranch = superBranch;
 		this.label = label;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.BEFORE, this));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, -1, "Drop ID")).setMin(-1).setMax(32000));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, -1, "Drop Metadata")).setMin(0));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 1, "Drop Count Min")).setMin(0).setMax(64));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 1, "Drop Count Max")).setMin(0).setMax(64));
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 

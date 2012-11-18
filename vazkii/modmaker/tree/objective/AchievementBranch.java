@@ -3,6 +3,8 @@ package vazkii.modmaker.tree.objective;
 import java.util.Map;
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.entrying.AchievementEntry;
 import vazkii.modmaker.tree.LeafAchievementID;
 import vazkii.modmaker.tree.LeafBoolean;
@@ -15,6 +17,8 @@ import vazkii.modmaker.tree.TreeLeaf;
 
 import net.minecraft.src.NBTTagCompound;
 
+import net.minecraftforge.common.MinecraftForge;
+
 public class AchievementBranch extends TreeBranch implements LeafableBranch {
 
 	private String label;
@@ -26,6 +30,7 @@ public class AchievementBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.BEFORE, this));
 		addLeaf(((LeafInteger) new LeafAchievementID().init(this, 0, "Achievement ID")).setMin(0));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, -1, "Parent Achievement ID")).setMin(-1));
 		addLeaf(new LeafInteger().init(this, 0, "Grid X Position"));
@@ -36,6 +41,7 @@ public class AchievementBranch extends TreeBranch implements LeafableBranch {
 		addLeaf(new LeafString().init(this, "", "Name"));
 		addLeaf(new LeafString().init(this, "", "Description"));
 		addLeaf(new LeafBoolean().init(this, false, "Special"));
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 

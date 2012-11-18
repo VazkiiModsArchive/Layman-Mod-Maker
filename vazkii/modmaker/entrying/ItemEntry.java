@@ -1,10 +1,15 @@
 package vazkii.modmaker.entrying;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 
+import vazkii.codebase.common.TypeContainer;
 import vazkii.modmaker.mod_ModMaker;
+import vazkii.modmaker.addon.event.EntryInitEvent;
+import vazkii.modmaker.addon.event.EntryReadEvent;
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
 import vazkii.modmaker.mod.CustomizableItem;
 import vazkii.modmaker.mod.ItemCustom;
 import vazkii.modmaker.mod.ItemCustomFood;
@@ -22,10 +27,21 @@ import net.minecraft.src.PotionHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
+import net.minecraftforge.common.MinecraftForge;
+
+/**
+ * <b>On read sends:<br>
+ * <br>
+ * </b> Before: nothing<br>
+ * <br>
+ * During and After:<br>
+ * 0: (TypeContainer Item) The item being set, must be an instance of
+ * CustomizableItem.
+ */
 public class ItemEntry extends ModEntry<ItemEntry> {
 
-	ItemBranch itemBranch;
-	static HashMap<String, String> potionMappings = new HashMap();
+	public ItemBranch itemBranch;
+	public static Map<String, String> potionMappings = new HashMap();
 
 	static {
 		potionMappings.put("wart", "+4");
@@ -44,12 +60,15 @@ public class ItemEntry extends ModEntry<ItemEntry> {
 
 	@Override
 	public ItemEntry init(Object... params) {
+		MinecraftForge.EVENT_BUS.post(new EntryInitEvent(EventPeriod.BEFORE, this));
 		itemBranch = (ItemBranch) params[0];
+		MinecraftForge.EVENT_BUS.post(new EntryInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 
 	@Override
 	public void readEntry() {
+		MinecraftForge.EVENT_BUS.post(new EntryReadEvent(EventPeriod.BEFORE, this));
 		TreeMap<String, TreeLeaf> leaves = itemBranch.leaves();
 		String name = (String) leaves.get("Item Type").read();
 
@@ -58,7 +77,7 @@ public class ItemEntry extends ModEntry<ItemEntry> {
 			FMLCommonHandler.instance().getFMLLogger().log(Level.WARNING, "Item ID " + itemID + " is already occupied, aborting registry of item " + itemBranch.label());
 			return;
 		}
-		Item item = null;
+		TypeContainer<Item> item = new TypeContainer(null);
 
 		if (name.equals("food")) {
 			FoodStatsBranch foodStats = (FoodStatsBranch) itemBranch.subBranches().get("foodStats");
@@ -70,14 +89,16 @@ public class ItemEntry extends ModEntry<ItemEntry> {
 			int potionID = (Integer) potionEffect.leaves().get("Potion ID").read();
 			double chance = (Double) potionEffect.leaves().get("Chance").read();
 
-			item = new ItemCustomFood(itemID - 256, foodValue, (float) saturationValue, wolfFood);
+			item.setObj(new ItemCustomFood(itemID - 256, foodValue, (float) saturationValue, wolfFood));
 			if (potionID != 0) {
 				int potionTime = (Integer) potionEffect.leaves().get("Potion Time").read();
 				int potionLevel = (Integer) potionEffect.leaves().get("Potion Level").read();
-				((ItemFood) item).setPotionEffect(potionID, potionTime, potionLevel, (float) chance);
-				((ItemFood) item).setAlwaysEdible();
+				((ItemFood) item.getObj()).setPotionEffect(potionID, potionTime, potionLevel, (float) chance);
+				((ItemFood) item.getObj()).setAlwaysEdible();
 			}
-		} else if (name.equals("normal")) item = new ItemCustom(itemID - 256);
+		} else if (name.equals("normal")) item.setObj(new ItemCustom(itemID - 256));
+
+		MinecraftForge.EVENT_BUS.post(new EntryReadEvent(EventPeriod.DURING, this, item));
 
 		int iconIndex = 0;
 		Object o = leaves.get("Sprite").read();
@@ -86,19 +107,21 @@ public class ItemEntry extends ModEntry<ItemEntry> {
 			iconIndex = o instanceof Integer ? (Integer) o : mod_ModMaker.claimedSprites.contains(o) ? ModLoader.addOverride("/gui/items.png", "/" + (String) o) : 0;
 		} catch (Throwable e) {
 		}
-		item.setIconIndex(iconIndex);
-		item.setMaxStackSize((Integer) leaves.get("Max Stack Size").read());
-		if ((Boolean) leaves.get("Full 3D").read()) item.setFull3D();
+		item.getObj().setIconIndex(iconIndex);
+		item.getObj().setMaxStackSize((Integer) leaves.get("Max Stack Size").read());
+		if ((Boolean) leaves.get("Full 3D").read()) item.getObj().setFull3D();
 		String itemName = (String) leaves.get("Item Name").read();
-		item.setItemName(itemName);
-		LanguageRegistry.addName(item, itemName);
-		((CustomizableItem) item).setColorOverlay((Integer) leaves.get("Color Overlay").read());
-		((CustomizableItem) item).setShine((Boolean) leaves.get("Shine").read());
-		((CustomizableItem) item).setRarity((Integer) leaves.get("Rarity").read());
+		item.getObj().setItemName(itemName);
+		LanguageRegistry.addName(item.getObj(), itemName);
+		((CustomizableItem) item.getObj()).setColorOverlay((Integer) leaves.get("Color Overlay").read());
+		((CustomizableItem) item.getObj()).setShine((Boolean) leaves.get("Shine").read());
+		((CustomizableItem) item.getObj()).setRarity((Integer) leaves.get("Rarity").read());
 		String potionEffect = (String) leaves.get("Brewing Effect").read();
-		((CustomizableItem) item).setPotionEffect0(potionMappings.containsKey(potionEffect) ? potionMappings.get(potionEffect) : "none");
+		((CustomizableItem) item.getObj()).setPotionEffect0(potionMappings.containsKey(potionEffect) ? potionMappings.get(potionEffect) : "none");
 		int creativeTab = (Integer) leaves.get("Creative Tab").read();
-		if (creativeTab > 0) item.setCreativeTab(CreativeTabs.creativeTabArray[creativeTab - 1]);
+		if (creativeTab > 0) item.getObj().setCreativeTab(CreativeTabs.creativeTabArray[creativeTab - 1]);
+
+		MinecraftForge.EVENT_BUS.post(new EntryReadEvent(EventPeriod.AFTER, this, item));
 	}
 
 }

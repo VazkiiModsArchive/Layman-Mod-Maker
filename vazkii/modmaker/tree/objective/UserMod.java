@@ -2,10 +2,15 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.UserModInitEvent;
+import vazkii.modmaker.addon.event.UserModNBTReadEvent;
 import vazkii.modmaker.tree.BranchHelper;
 import vazkii.modmaker.tree.TreeBranch;
 
 import net.minecraft.src.NBTTagCompound;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class UserMod extends TreeBranch {
 
@@ -17,12 +22,14 @@ public class UserMod extends TreeBranch {
 	@Override
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
+		MinecraftForge.EVENT_BUS.post(new UserModInitEvent(EventPeriod.BEFORE, this));
 		addBranch("images", new ImagesBranch().init(this, "Images"));
 		addBranch("items", new ItemsBranch().init(this, "Items"));
 		addBranch("blocks", new BlocksBranch().init(this, "Blocks"));
 		addBranch("oreGeneration", new OreGenerationBranch().init(this, "Ore Generation"));
 		addBranch("recipes", new RecipesBranch().init(this, "Recipes"));
 		addBranch("achievements", new AchievementsBranch().init(this, "Achievements"));
+		MinecraftForge.EVENT_BUS.post(new UserModInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 
@@ -71,15 +78,17 @@ public class UserMod extends TreeBranch {
 	public void readFromNBT(NBTTagCompound cmp, TreeBranch superBranch) {
 		author = cmp.getString("author");
 		cmp.getString("label");
+		MinecraftForge.EVENT_BUS.post(new UserModNBTReadEvent(EventPeriod.BEFORE, this, cmp));
 		if (cmp.hasKey("Images")) readBranch(cmp.getCompoundTag("Images"));
 		if (cmp.hasKey("Items")) readBranch(cmp.getCompoundTag("Items"));
 		if (cmp.hasKey("Blocks")) readBranch(cmp.getCompoundTag("Blocks"));
 		if (cmp.hasKey("Ore Generation")) readBranch(cmp.getCompoundTag("Ore Generation"));
 		if (cmp.hasKey("Recipes")) readBranch(cmp.getCompoundTag("Recipes"));
 		if (cmp.hasKey("Achievements")) readBranch(cmp.getCompoundTag("Achievements"));
+		MinecraftForge.EVENT_BUS.post(new UserModNBTReadEvent(EventPeriod.AFTER, this, cmp));
 	}
 
-	private void readBranch(NBTTagCompound cmp) {
+	public void readBranch(NBTTagCompound cmp) {
 		String type = cmp.getString("type");
 		TreeBranch branch = BranchHelper.branchFromNBT(cmp).init(this, cmp.getString("label"));
 		addBranch(type, branch);

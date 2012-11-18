@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeMap;
 
+import vazkii.codebase.common.ColorCode;
 import vazkii.codebase.common.CommonUtils;
 import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
@@ -38,7 +39,7 @@ public class GuiLeafableBranchContainer extends GuiBranchContainer {
 		if (leaves.containsKey(name)) {
 			TreeLeaf leaf = leaves.get(name);
 			String label = leaf.label();
-			font.drawString(label, var2, var3 + 6, 0xFFFFFF);
+			font.drawString(leaf.isAddonFeature() ? label + ColorCode.BRIGHT_GREEN + " (" + leaf.getAddon().getAddonName() + ")" : label, var2, var3 + 6, 0xFFFFFF);
 			font.drawString(leaf.displayString(), var2 + 6, var3 + 18, 0x404040);
 		} else super.drawSlot(var1, var2, var3, var4, var5);
 	}

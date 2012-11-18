@@ -2,6 +2,7 @@ package vazkii.modmaker.gui;
 
 import vazkii.codebase.common.ColorCode;
 import vazkii.modmaker.IOHelper;
+import vazkii.modmaker.addon.LMMAddon;
 import vazkii.modmaker.tree.BranchHelper;
 import vazkii.modmaker.tree.TreeLeaf;
 
@@ -26,6 +27,11 @@ public abstract class GuiLeafEdit<T> extends GuiModMaker {
 	@Override
 	public void drawExtras(int par1, int par2, float par3) {
 		drawCompletelyCenteredString(String.format("Editing %s.", propName), 25, true, 0xFFFFFF);
+		if (leaf.isAddonFeature()) {
+			LMMAddon addon = leaf.getAddon();
+			drawCompletelyCenteredString(ColorCode.BRIGHT_GREEN + "This Feature is provided by " + addon.getAddonName(), 40, true, 0xFFFFFF);
+
+		}
 		if (drawValueString()) drawCompletelyCenteredString("Value:", 85, false, 0xFFFFFF);
 		String error = getError();
 		if (!validate(error)) {

@@ -2,6 +2,8 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.entrying.ItemEntry;
 import vazkii.modmaker.tree.LeafBoolean;
 import vazkii.modmaker.tree.LeafInteger;
@@ -14,6 +16,8 @@ import vazkii.modmaker.tree.TreeLeaf;
 
 import net.minecraft.src.NBTTagCompound;
 
+import net.minecraftforge.common.MinecraftForge;
+
 public class ItemBranch extends TreeBranch implements LeafableBranch {
 
 	private String label;
@@ -25,6 +29,7 @@ public class ItemBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.BEFORE, this));
 		addBranch("foodStats", new FoodStatsBranch().init(this, "Food Stats"));
 		addLeaf(new LeafString().init(this, "normal", "Item Type", "normal", "food"));
 		addLeaf(((LeafInteger) new LeafItemID().init(this, 0, "Item ID")).setMax(32000).setMin(256));
@@ -37,6 +42,7 @@ public class ItemBranch extends TreeBranch implements LeafableBranch {
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Rarity")).setMax(3).setMin(0));
 		addLeaf(((LeafInteger) new LeafInteger().init(this, 0, "Creative Tab")).setMax(12).setMin(0));
 		addLeaf(new LeafString().init(this, "none", "Brewing Effect", "none", "wart", "glowstone", "redstone", "ferm_eye", "magma", "sugar", "melon", "eye", "tear", "blaze", "carrot", "gunpowder"));
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 

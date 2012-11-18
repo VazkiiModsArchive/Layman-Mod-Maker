@@ -7,6 +7,9 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 
 import vazkii.codebase.common.IOUtils;
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.LoadAllModsEvent;
+import vazkii.modmaker.addon.event.LoadModEvent;
 import vazkii.modmaker.tree.objective.UserMod;
 
 import com.google.common.io.ByteStreams;
@@ -14,6 +17,8 @@ import com.google.common.io.ByteStreams;
 import net.minecraft.client.Minecraft;
 
 import net.minecraft.src.NBTTagCompound;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class IOHelper {
 
@@ -25,17 +30,22 @@ public class IOHelper {
 	}
 
 	public static UserMod loadMod(File file) {
+		MinecraftForge.EVENT_BUS.post(new LoadModEvent(EventPeriod.BEFORE, file));
 		NBTTagCompound cmp = IOUtils.getTagCompoundInFile(file);
 		UserMod mod = ((UserMod) new UserMod().init(null, cmp.getString("label"))).setAuthor(cmp.getString("author"));
+		MinecraftForge.EVENT_BUS.post(new LoadModEvent(EventPeriod.DURING, file, mod));
 		mod.readFromNBT(cmp, null);
+		MinecraftForge.EVENT_BUS.post(new LoadModEvent(EventPeriod.AFTER, file, mod));
 		return mod;
 	}
 
 	public static void loadAllMods() {
+		MinecraftForge.EVENT_BUS.post(new LoadAllModsEvent(EventPeriod.BEFORE));
 		for (File f : mod_ModMaker.usermodsFile.listFiles(new VariableEndFilter(".dat"))) {
 			UserMod mod = loadMod(f);
 			mod_ModMaker.userMods.put(mod.label(), mod);
 		}
+		MinecraftForge.EVENT_BUS.post(new LoadAllModsEvent(EventPeriod.AFTER));
 	}
 
 	public static byte[] convertFileToByteArray(File f) {

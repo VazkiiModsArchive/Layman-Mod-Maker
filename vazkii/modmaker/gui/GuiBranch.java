@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+import vazkii.codebase.common.ColorCode;
+import vazkii.modmaker.addon.AddonMarker;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 
@@ -35,7 +37,7 @@ public class GuiBranch extends GuiModMaker {
 	@Override
 	public void initGui() {
 		super.initGui();
-		container = new GuiBranchContainer(this, branch.subBranches());
+		container = new GuiBranchContainer(this, branch.subBranches(), branch instanceof AddonMarker);
 		controlList.clear();
 		controlList.add(createCenteredButton(0, height - 85, "Explore Branch"));
 		controlList.add(createCenteredButton(1, height - 65, "Create new Branch"));
@@ -74,7 +76,8 @@ public class GuiBranch extends GuiModMaker {
 	@Override
 	public void drawExtras(int par1, int par2, float par3) {
 		container.drawScreen(par1, par2, par3);
-		drawCenteredString(fontRenderer, getPath(), width / 2, 20, 16777215);
+		drawCenteredString(fontRenderer, getPath(), width / 2, branch instanceof AddonMarker ? 16 : 20, 16777215);
+		if (branch instanceof AddonMarker) drawCenteredString(fontRenderer, ColorCode.BRIGHT_GREEN + "This Feature is provided by " + ((AddonMarker) branch).getProvidingAddon(branch).getAddonName(), width / 2, 32, 16777215);
 	}
 
 	public String getPath() {

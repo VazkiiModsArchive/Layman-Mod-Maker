@@ -5,7 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
 
+import vazkii.codebase.common.ColorCode;
 import vazkii.codebase.common.CommonUtils;
+import vazkii.modmaker.addon.AddonMarker;
 import vazkii.modmaker.tree.LeafableBranch;
 import vazkii.modmaker.tree.TreeBranch;
 
@@ -19,9 +21,14 @@ public class GuiBranchContainer extends GuiSlot {
 	List<String> labels;
 	GuiBranch parent;
 	int selectedIndex;
+	boolean addon;
 
 	public GuiBranchContainer(GuiBranch screen, TreeMap<String, TreeBranch> branches) {
-		super(CommonUtils.getMc(), screen.width, screen.height, 32, screen.height - 92, 36);
+		this(screen, branches, false);
+	}
+
+	public GuiBranchContainer(GuiBranch screen, TreeMap<String, TreeBranch> branches, boolean addon) {
+		super(CommonUtils.getMc(), screen.width, screen.height, 32 + (addon ? 14 : 0), screen.height - 92, 36);
 		parent = screen;
 		labels = branches == null || branches.isEmpty() ? new LinkedList() : new ArrayList(branches.keySet());
 		this.branches = branches;
@@ -63,7 +70,7 @@ public class GuiBranchContainer extends GuiSlot {
 
 		String label = branches.get(name).label();
 		TreeMap<String, TreeBranch> map = branches.get(name).subBranches();
-		font.drawString(label, var2, var3 + 6, 0xFFFFFF);
+		font.drawString(branch instanceof AddonMarker ? label + ColorCode.BRIGHT_GREEN + " (" + ((AddonMarker) branch).getProvidingAddon(branch).getAddonName() + ")" : label, var2, var3 + 6, 0xFFFFFF);
 		int entries = map == null ? 0 : map.size();
 		if (branch instanceof LeafableBranch) entries += ((LeafableBranch) branch).leaves().size();
 

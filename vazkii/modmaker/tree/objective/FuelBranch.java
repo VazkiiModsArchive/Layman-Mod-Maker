@@ -2,6 +2,8 @@ package vazkii.modmaker.tree.objective;
 
 import java.util.TreeMap;
 
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
+import vazkii.modmaker.addon.event.TreeBranchInitEvent;
 import vazkii.modmaker.entrying.FuelEntry;
 import vazkii.modmaker.tree.LeafInteger;
 import vazkii.modmaker.tree.LeafStringStack;
@@ -10,6 +12,8 @@ import vazkii.modmaker.tree.TreeBranch;
 import vazkii.modmaker.tree.TreeLeaf;
 
 import net.minecraft.src.NBTTagCompound;
+
+import net.minecraftforge.common.MinecraftForge;
 
 public class FuelBranch extends TreeBranch implements LeafableBranch {
 
@@ -22,8 +26,10 @@ public class FuelBranch extends TreeBranch implements LeafableBranch {
 	public TreeBranch init(TreeBranch superBranch, String label) {
 		this.label = label;
 		this.superBranch = superBranch;
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.BEFORE, this));
 		addLeaf(new LeafStringStack().init(this, "1:0", "Item"));
 		addLeaf(new LeafInteger().init(this, 0, "Time"));
+		MinecraftForge.EVENT_BUS.post(new TreeBranchInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 

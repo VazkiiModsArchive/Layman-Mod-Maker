@@ -8,7 +8,17 @@ import java.util.zip.ZipOutputStream;
 
 import vazkii.modmaker.IOHelper;
 import vazkii.modmaker.mod_ModMaker;
+import vazkii.modmaker.addon.event.EntryInitEvent;
+import vazkii.modmaker.addon.event.EntryReadEvent;
+import vazkii.modmaker.addon.event.LMMEvent.EventPeriod;
 
+import net.minecraftforge.common.MinecraftForge;
+
+/**
+ * <b>On read sends:<br>
+ * <br>
+ * </b> Before and After: nothing<br>
+ */
 public class ImageEntry extends ModEntry<ImageEntry> {
 
 	String fileName;
@@ -17,14 +27,17 @@ public class ImageEntry extends ModEntry<ImageEntry> {
 
 	@Override
 	public ImageEntry init(Object... params) {
+		MinecraftForge.EVENT_BUS.post(new EntryInitEvent(EventPeriod.BEFORE, this));
 		fileName = (String) params[0];
 		byteData = (byte[]) params[1];
 		modName = (String) params[2];
+		MinecraftForge.EVENT_BUS.post(new EntryInitEvent(EventPeriod.AFTER, this));
 		return this;
 	}
 
 	@Override
 	public void readEntry() {
+		MinecraftForge.EVENT_BUS.post(new EntryReadEvent(EventPeriod.BEFORE, this));
 		try {
 			File spritesZip = IOHelper.createSpritesZip('\u017F' + " LMM_SPRITE_" + modName + "_" + fileName.replace(".png", "") + ".zip");
 			if (!spritesZip.exists()) {
@@ -39,5 +52,6 @@ public class ImageEntry extends ModEntry<ImageEntry> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		MinecraftForge.EVENT_BUS.post(new EntryReadEvent(EventPeriod.AFTER, this));
 	}
 }
